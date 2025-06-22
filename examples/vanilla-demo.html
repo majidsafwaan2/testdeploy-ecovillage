@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conservation Chatbot Demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Changed to Lorem Picsum for more reliable random images */
+            background-image: url('https://picsum.photos/1920/1080?random=1'); /* Added ?random=1 to ensure a new image on hard refresh */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            display: flex;
+            flex-direction: column; /* Allow content to stack */
+            justify-content: flex-start; /* Start content from top */
+            align-items: center;
+            padding-bottom: 100px; /* Make sure there's space for the fixed chatbot at the bottom */
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 50px auto 20px auto; /* Adjust top margin for better spacing */
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        .controls select, .controls button {
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .controls button {
+            background-color: #6a0dad;
+            color: white;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+        .controls button:hover {
+            background-color: #5a0aaa;
+        }
+        #chatbot-ui-placeholder {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Welcome to the Conservation Chatbot Demo!</h1>
+        <p>Choose an endangered animal to chat with:</p>
+        <div class="controls">
+            <select id="animalSelect">
+                </select>
+            <button id="startChatButton">Start Chat</button>
+        </div>
+
+    </main>
+
+    <div id="chatbot-ui-placeholder"></div>
+
+    <script type="module">
+        import { createAnimalChatbot, renderChatbotUI } from 'conservation-chatbot';
+
+        // --- Dataset of Endangered Animals ---
+        const endangeredAnimals = [
+            {
+                id: 'philippine-eagle',
+                name: 'Tala',
+                species: 'Philippine Eagle',
+                conservationStatus: 'Critically Endangered',
+                location: 'Philippines',
+                photo: 'https://picsum.photos/id/1084/100/100' // Lorem Picsum - Fixed ID for consistent image
+            },
+            {
+                id: 'amur-leopard',
+                name: 'Leo',
+                species: 'Amur Leopard',
+                conservationStatus: 'Critically Endangered',
+                location: 'Russian Far East',
+                photo: 'https://picsum.photos/id/237/100/100' // Lorem Picsum - Fixed ID
+            },
+            {
+                id: 'javan-rhino',
+                name: 'Rino',
+                species: 'Javan Rhino',
+                conservationStatus: 'Critically Endangered',
+                location: 'Indonesia',
+                photo: 'https://picsum.photos/id/1020/100/100' // Lorem Picsum - Fixed ID
+            },
+            {
+                id: 'orangutan',
+                name: 'Orangie',
+                species: 'Orangutan',
+                conservationStatus: 'Critically Endangered',
+                location: 'Borneo and Sumatra',
+                photo: 'https://picsum.photos/id/1024/100/100' // Lorem Picsum - Fixed ID
+            },
+            {
+                id: 'vaquita',
+                name: 'Vicky',
+                species: 'Vaquita',
+                conservationStatus: 'Critically Endangered',
+                location: 'Gulf of California',
+                photo: 'https://picsum.photos/id/1031/100/100' // Lorem Picsum - Fixed ID
+            }
+        ];
+
+        const animalSelect = document.getElementById('animalSelect');
+        const startChatButton = document.getElementById('startChatButton');
+        const chatbotPlaceholder = document.getElementById('chatbot-ui-placeholder'); // Get the placeholder
+
+        let currentChatbotInstance = null; // To hold the active chatbot
+
+        // Populate the dropdown
+        endangeredAnimals.forEach(animal => {
+            const option = document.createElement('option');
+            option.value = animal.id;
+            option.textContent = animal.name + ' (' + animal.species + ')';
+            animalSelect.appendChild(option);
+        });
+
+        const initializeChatbot = () => {
+            // Remove previous chatbot if it exists
+            if (currentChatbotInstance) {
+                // In a more complex app, you'd have a dispose method.
+                // For now, we'll just clear the placeholder's content.
+                chatbotPlaceholder.innerHTML = '';
+            }
+
+            const selectedAnimalId = animalSelect.value;
+            const selectedAnimal = endangeredAnimals.find(a => a.id === selectedAnimalId);
+
+            if (selectedAnimal) {
+                const bot = createAnimalChatbot({
+                    animal: {
+                        name: selectedAnimal.name,
+                        species: selectedAnimal.species,
+                        conservationStatus: selectedAnimal.conservationStatus,
+                        location: selectedAnimal.location
+                    },
+                    photo: selectedAnimal.photo
+                });
+
+                currentChatbotInstance = bot; // Store the new instance
+
+                // Render the chatbot into the body (it's fixed positioned, but renderChatbotUI expects a parent)
+                renderChatbotUI(document.body, bot);
+
+                // Hide controls after starting chat
+                document.querySelector('.controls').style.display = 'none';
+                document.querySelector('main').style.display = 'none'; // Also hide main content for clean demo
+            } else {
+                alert('Please select an animal!');
+            }
+        };
+
+        startChatButton.addEventListener('click', initializeChatbot);
+
+        // Optional: Immediately initialize with the first animal on page load
+        // initializeChatbot(); // Uncomment this line if you want it to start immediately
+    </script>
+</body>
+</html>
