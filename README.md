@@ -17,7 +17,7 @@ const chatbot = initConservationChatbot({
 });
 ```
 
-**[Complete NGO Setup Guide](NGO_SETUP_GUIDE.md)**
+**[Complete NGO Setup Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/NGO_SETUP_GUIDE.md)**
 
 ## Features
 
@@ -309,18 +309,18 @@ apiKey: process.env.GEMINI_API_KEY // Environment variable (recommended)
 
 ## Documentation
 
-- **[Complete NGO Setup Guide](NGO_SETUP_GUIDE.md)** - Detailed setup for conservation organizations
-- **[API Reference](docs/API.md)** - Full API documentation
-- **[Customization Guide](docs/CUSTOMIZATION.md)** - Advanced styling options
-- **[Examples](examples/)** - Working examples and demos
+- **[Complete NGO Setup Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/NGO_SETUP_GUIDE.md)** - Detailed setup for conservation organizations
+- **[API Reference](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/API.md)** - Full API documentation
+- **[Customization Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/CUSTOMIZATION.md)** - Advanced styling options
+- **[Examples](https://github.com/majidsafwaan2/conservation-chatbot/tree/main/examples)** - Working examples and demos
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/CONTRIBUTING.md) for details.
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/LICENSE) file for details.
 
 ## Acknowledgments
 
@@ -330,4 +330,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Ready to help endangered animals?** [Get started with the NGO Setup Guide](NGO_SETUP_GUIDE.md)
+**Ready to help endangered animals?** [Get started with the NGO Setup Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/NGO_SETUP_GUIDE.md)
