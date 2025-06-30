@@ -1,6 +1,6 @@
 {
   "name": "conservation-chatbot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Interactive AI chatbot for endangered animals - Perfect for NGOs and conservation organizations",
   "main": "dist/conservation-chatbot.umd.js",
   "module": "dist/conservation-chatbot.es.js",
