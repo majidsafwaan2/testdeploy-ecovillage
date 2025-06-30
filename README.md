@@ -5,17 +5,73 @@
 [![npm version](https://badge.fury.io/js/conservation-chatbot.svg)](https://badge.fury.io/js/conservation-chatbot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Quick Start (3 Lines!)
+## Quick Start for NGOs
 
-```javascript
-import { initConservationChatbot } from 'conservation-chatbot';
+1. **Install the package:**
+   ```sh
+   npm install conservation-chatbot
+   ```
+2. **Basic usage (built-in animals):**
+   ```js
+   import { initConservationChatbot } from 'conservation-chatbot';
 
-const chatbot = initConservationChatbot({
-  apiKey: 'your-gemini-api-key',
-  organization: 'Your Organization Name',
-  animals: 'Giant Panda, Bengal Tiger'
-});
-```
+   initConservationChatbot({
+     apiKey: 'your-gemini-api-key',
+     organization: 'Your Organization',
+     organizationType: 'wildlife',
+     animals: 'Bengal Tiger, Giant Panda' // String-based selection for built-in animals
+   });
+   ```
+   This will work out of the box and use built-in animal avatars and names.
+
+3. **Custom animals and images (advanced):**
+   - If your npm package version supports it, you can use an array of animal objects for custom avatars, dropdowns, and more:
+   ```js
+   const animals = [
+     {
+       id: "tiger",
+       name: "Raja",
+       species: "Bengal Tiger",
+       conservationStatus: "Endangered",
+       location: "Sundarbans",
+       photo: "/images/raja-tiger.jpg", // Place your image in public/images/
+       label: "Bengal Tiger",
+       system: "You are a Bengal tiger...",
+       intro: "Rawrr... I'm Raja...",
+       color: "bg-orange-500"
+     }
+     // ...more animals
+   ];
+
+   initConservationChatbot({
+     apiKey: 'your-gemini-api-key',
+     organization: 'Your Organization',
+     animals,
+     styles: { /* ... */ }
+   });
+   ```
+
+---
+
+## Adding Custom Images for Animal Profile Pictures
+
+**To use your own animal images as profile pictures:**
+
+1. **Place your images in the `public/images/` directory of your project.**
+   - Example: `public/images/raja-tiger.jpg`
+2. **Reference the image in your animal object using a leading slash:**
+   - Example:
+     ```js
+     photo: "/images/raja-tiger.jpg"
+     ```
+3. **Restart your dev server after adding new images.**
+4. **Check your browser's developer tools (Network tab) for 404 errors if the image does not appear.**
+
+**Note:** The path must start with `/images/` and the file must exist in your `public/images/` directory for the image to be served correctly.
+
+---
+
+## Troubleshooting
 
 **[Complete NGO Setup Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/NGO_SETUP_GUIDE.md)**
 
