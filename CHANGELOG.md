@@ -5,69 +5,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.0] - 2024-01-XX
+## [1.1.2] - 2024-12-30
 
 ### Added
-- **Major Expansion**: Increased from 9 to 25+ endangered animals
-- **Organized by Conservation Focus**: Animals now grouped by major NGO focus areas
-- **New Animal Categories**:
-  - **WWF & Global Wildlife**: Tiger, Elephant, Panda, Rhino
-  - **Sea Shepherd & Marine**: Sea Turtle, Vaquita, Blue Whale, Dolphin, Shark
-  - **Rainforest Alliance & Forest**: Gorilla, Orangutan, Sloth, Jaguar, Toucan
-  - **Polar Bears International & Climate**: Polar Bear, Penguin, Seal
-  - **Bird Conservation**: Eagle, Owl, Flamingo
-  - **Primate Conservation**: Lemur, Chimpanzee
-  - **Big Cat Conservation**: Lion, Leopard, Cheetah
-  - **Marine Mammal Conservation**: Sea Otter, Manatee
-- **Enhanced Documentation**: Updated README and NGO Setup Guide with new animals
-- **Organization-Specific Examples**: Added 8 detailed examples for different conservation types
+- **Custom Animal Photos**: NGOs can now provide their own photos for each animal
+- **Photo Requirements Documentation**: Clear guidelines for custom photo formats and sizes
+- **Unsplash Integration**: High-quality default animal photos from Unsplash API
 
-### Features
-- **New Animals Added**:
-  - Kai (Blue Whale) - Endangered
-  - Marina (Dolphin) - Least Concern
-  - Finn (Shark) - Vulnerable
-  - Luna (Sloth) - Least Concern
-  - Shadow (Jaguar) - Near Threatened
-  - Rio (Toucan) - Least Concern
-  - Waddles (Penguin) - Near Threatened
-  - Blubber (Seal) - Least Concern
-  - Freedom (Eagle) - Least Concern
-  - Hoot (Owl) - Vulnerable
-  - Pink (Flamingo) - Least Concern
-  - Zazu (Lemur) - Endangered
-  - Koko (Chimpanzee) - Endangered
-  - Simba (Lion) - Vulnerable
-  - Spot (Leopard) - Vulnerable
-  - Swift (Cheetah) - Vulnerable
-  - River (Otter) - Endangered
-  - Gentle (Manatee) - Vulnerable
+### Changed
+- **UI Improvements**: 
+  - Reduced heart button height and added clip-path to remove bottom sliver
+  - Moved input field 2px to the right for better alignment
+  - Updated all animal photos to use relevant Unsplash images instead of random placeholders
+- **Documentation**: Added comprehensive photo customization guide in NGO Setup Guide
 
-### Documentation
-- Updated README with comprehensive animal list by conservation focus
-- Enhanced NGO Setup Guide with 8 organization-specific examples
-- Added detailed animal descriptions and conservation status
-- Improved integration examples for different frameworks
+### Fixed
+- **Photo Quality**: Replaced all placeholder images with high-quality, relevant animal photos
+- **UI Alignment**: Improved input field positioning for better visual balance
 
-### Technical
-- Maintained backward compatibility with existing animal IDs
-- Enhanced animal selection parsing for new species
-- Improved organization-specific prompt generation
+## [1.1.1] - 2024-12-30
 
----
+### Changed
+- **Animal Labels**: Updated to use specific species names (e.g., "Bengal Tiger" instead of "Tiger")
+- **Conservation Focus**: Removed organization names from section headings, keeping only conservation focus areas
+- **Documentation**: Updated README and NGO Setup Guide to reflect new naming conventions
 
-## [1.0.0] - 2024-01-XX
+## [1.1.0] - 2024-12-30
 
 ### Added
-- Initial release of Conservation Chatbot library
-- Pre-configured 9 endangered animals with unique personalities
-- Easy 3-line integration API
-- Mantine-style customization system
-- Theme presets (dark, light, nature, ocean)
-- Dynamic animal management (add/remove animals)
-- Responsive design for all devices
-- TypeScript support
-- Comprehensive documentation and examples
+- **Expanded Animal Collection**: Increased from 9 to 27 animals organized by conservation focus areas
+- **New Conservation Focus Areas**: Added Bird Conservation, Primate Conservation, Big Cat Conservation, and Marine Mammal Conservation
+- **Additional Animals**: Added 18 new animals including Bald Eagle, Snowy Owl, Chimpanzee, African Lion, Sea Otter, and more
+- **Comprehensive Documentation**: Updated all documentation to reflect the expanded animal collection
+
+### Changed
+- **Animal Organization**: Reorganized animals into 8 distinct conservation focus areas
+- **Documentation**: Updated README, NGO Setup Guide, examples, and tests to include all new animals
+
+## [1.0.0] - 2024-12-30
+
+### Added
+- **Initial Release**: Complete conservation chatbot library
+- **27 Endangered Animals**: Comprehensive collection with realistic personalities and conservation information
+- **Organization-Specific AI**: Tailored responses based on conservation focus areas
+- **Mantine-Style Styling API**: Flexible CSS customization system
+- **Theme Presets**: Pre-built themes for common use cases
+- **Dynamic Animal Management**: Add, remove, and customize animals at runtime
+- **Professional Documentation**: Complete setup guides and API documentation
+- **NPM Package**: Ready-to-use library with automated publishing
+- **GitHub Integration**: Full repository with workflows and documentation
 
 ### Features
 - **Animals Included**:

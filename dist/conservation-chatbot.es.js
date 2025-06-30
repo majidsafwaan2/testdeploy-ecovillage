@@ -32,8 +32,8 @@ function K({ animal: n, photo: e, customPersonality: a, facts: h, userPromptHook
             // <<< New: Control diversity
           }
         })).response).text();
-      } catch (c) {
-        return console.error("Error communicating with Gemini API:", c), c.name === "GoogleGenerativeAIFetchError" && c.message.includes("404") ? (console.error(`Attempted model: "${R}"`), `I'm sorry, the AI model I need (${R}) isn't available or configured correctly. Please check your API key and try again.`) : "I'm sorry, I'm having a little trouble communicating right now. Please try again later!";
+      } catch (l) {
+        return console.error("Error communicating with Gemini API:", l), l.name === "GoogleGenerativeAIFetchError" && l.message.includes("404") ? (console.error(`Attempted model: "${R}"`), `I'm sorry, the AI model I need (${R}) isn't available or configured correctly. Please check your API key and try again.`) : "I'm sorry, I'm having a little trouble communicating right now. Please try again later!";
       }
     },
     getAnimalName: () => n.name,
@@ -297,6 +297,7 @@ const O = `
         color: #333; /* Dark text for input */
         border-radius: 20px; /* Rounded input field */
         margin-right: 8px; /* Space between input and send button */
+        margin-left: 2px; /* Move input 2px to the right */
         font-size: 14px; /* Font size for input text */
         outline: none; /* Removes outline on focus */
         min-width: 0; /* Allows the input field to shrink on smaller screens */
@@ -367,6 +368,8 @@ const O = `
 
     .conservation-chatbot-heart-button {
         margin-right: 0;
+        height: 32px; /* Reduced height to remove bottom sliver */
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 90%); /* Clip bottom 10% */
     }
 `;
 function $(n, e, a) {
@@ -395,32 +398,32 @@ function $(n, e, a) {
   b.id = "conservation-chatbot-container";
   const r = document.createElement("div");
   r.className = "conservation-chatbot-header";
-  const u = document.createElement("div");
-  u.className = "title-group";
+  const p = document.createElement("div");
+  p.className = "title-group";
   const v = document.createElement("img");
   v.src = i.getAnimalPhoto(), v.alt = `${i.getAnimalName()} Avatar`, v.className = "conservation-chatbot-avatar", v.style.marginRight = "3px";
   const y = document.createElement("select");
   y.className = "conservation-chatbot-animal-select", y.style.marginLeft = "3px", y.style.minWidth = "unset", y.style.padding = "4px 6px", e.forEach((o, s) => {
-    const p = document.createElement("option");
-    p.value = s, p.textContent = `Talk to ${o.name}`, s === h && (p.selected = !0), y.appendChild(p);
+    const u = document.createElement("option");
+    u.value = s, u.textContent = `Talk to ${o.name}`, s === h && (u.selected = !0), y.appendChild(u);
   });
   const t = document.createElement("button");
-  t.className = "conservation-chatbot-heart-button", t.innerHTML = "♥", t.title = "Show your love!", t.style.marginLeft = "-20px", t.style.width = "80px", t.style.fontSize = "28px", t.style.background = "none", t.style.border = "none", t.style.color = "white", t.style.cursor = "pointer", t.style.transition = "color 0.2s", t.style.height = "36px", t.style.borderRadius = "50%", t.style.display = "flex", t.style.alignItems = "center", t.style.justifyContent = "center", t.style.lineHeight = "1", t.style.padding = "0";
-  let c = !1;
+  t.className = "conservation-chatbot-heart-button", t.innerHTML = "♥", t.title = "Show your love!", t.style.marginLeft = "-20px", t.style.width = "80px", t.style.fontSize = "28px", t.style.background = "none", t.style.border = "none", t.style.color = "white", t.style.cursor = "pointer", t.style.transition = "color 0.2s", t.style.height = "32px", t.style.borderRadius = "50%", t.style.display = "flex", t.style.alignItems = "center", t.style.justifyContent = "center", t.style.lineHeight = "1", t.style.padding = "0";
+  let l = !1;
   function w() {
-    t.style.color = c ? "#ff69b4" : "white";
+    t.style.color = l ? "#ff69b4" : "white";
   }
   t.addEventListener("mouseenter", () => {
-    c || (t.style.color = "#ff69b4");
+    l || (t.style.color = "#ff69b4");
   }), t.addEventListener("mouseleave", () => {
-    c || (t.style.color = "white");
+    l || (t.style.color = "white");
   }), t.addEventListener("mousedown", () => {
   }), t.addEventListener("mouseup", () => {
   }), t.addEventListener("click", () => {
-    c = !c, w();
+    l = !l, w();
   }), w();
   const k = document.createElement("button");
-  k.className = "conservation-chatbot-close-button", k.innerHTML = "&times;", u.appendChild(v), u.appendChild(y), u.appendChild(t), r.appendChild(u), r.appendChild(k), b.appendChild(r);
+  k.className = "conservation-chatbot-close-button", k.innerHTML = "&times;", p.appendChild(v), p.appendChild(y), p.appendChild(t), r.appendChild(p), r.appendChild(k), b.appendChild(r);
   const g = document.createElement("div");
   g.className = "conservation-chatbot-messages", b.appendChild(g);
   const A = document.createElement("div");
@@ -443,8 +446,8 @@ function $(n, e, a) {
   const T = (o) => {
     if (o >= 0 && o < e.length) {
       h = o, i = a(e[h]), d.src = i.getAnimalPhoto(), d.alt = `${i.getAnimalName()} Avatar`, v.src = i.getAnimalPhoto(), v.alt = `${i.getAnimalName()} Avatar`, g.innerHTML = "";
-      const p = e[h].intro || `Hello! I'm ${i.getAnimalName()}. What would you like to know about me and my conservation?`;
-      C(p, "bot");
+      const u = e[h].intro || `Hello! I'm ${i.getAnimalName()}. What would you like to know about me and my conservation?`;
+      C(u, "bot");
     }
   };
   let L = !1;
@@ -467,8 +470,8 @@ function $(n, e, a) {
     isNaN(s) || T(s);
   });
   function C(o, s) {
-    const p = document.createElement("div");
-    return p.classList.add("conservation-chatbot-message", s), p.textContent = o, g.appendChild(p), g.scrollTop = g.scrollHeight, p;
+    const u = document.createElement("div");
+    return u.classList.add("conservation-chatbot-message", s), u.textContent = o, g.appendChild(u), g.scrollTop = g.scrollHeight, u;
   }
   function z() {
     const o = document.createElement("div");
@@ -485,14 +488,14 @@ function $(n, e, a) {
     if (!o.trim()) return;
     C(o, "user");
     const s = z();
-    f.disabled = !0, S.disabled = !0, I.forEach((p) => p.disabled = !0);
+    f.disabled = !0, S.disabled = !0, I.forEach((u) => u.disabled = !0);
     try {
-      const p = await i.respondTo(o);
-      Y(s), C(p, "bot");
-    } catch (p) {
-      console.error("Error getting response from chatbot:", p), Y(s), C("I'm sorry, I'm having trouble responding right now. Please try again!", "bot");
+      const u = await i.respondTo(o);
+      Y(s), C(u, "bot");
+    } catch (u) {
+      console.error("Error getting response from chatbot:", u), Y(s), C("I'm sorry, I'm having trouble responding right now. Please try again!", "bot");
     } finally {
-      f.disabled = !1, S.disabled = !1, I.forEach((p) => p.disabled = !1), f.focus();
+      f.disabled = !1, S.disabled = !1, I.forEach((u) => u.disabled = !1), f.focus();
     }
   };
   f.addEventListener("keypress", (o) => {
@@ -524,7 +527,7 @@ const q = ({
   label: d,
   system: b,
   intro: r,
-  color: u
+  color: p
 }) => ({
   id: n,
   name: e,
@@ -535,7 +538,7 @@ const q = ({
   label: d,
   system: b,
   intro: r,
-  color: u
+  color: p
 }), x = [
   // Global Wildlife Conservation
   {
@@ -544,7 +547,7 @@ const q = ({
     species: "Bengal Tiger",
     conservationStatus: "Endangered",
     location: "Sundarbans",
-    photo: "https://picsum.photos/id/1084/100/100",
+    photo: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=100&h=100&fit=crop&crop=face",
     label: "Bengal Tiger",
     system: "You are a Bengal tiger. Speak with wisdom, pride, and urgency. Keep answers short and human-like. Avoid long paragraphs. If a question is complex, ask if the user wants to learn more. Talk about poaching, habitat loss, and being an apex predator.",
     intro: "Rawrr... I'm Raja, a Bengal tiger from the Sundarbans. My brother Shere vanished after crossing into poacher territory. Ask me anything you're curious about.",
@@ -556,7 +559,7 @@ const q = ({
     species: "African Elephant",
     conservationStatus: "Endangered",
     location: "Savannah",
-    photo: "https://picsum.photos/id/1024/100/100",
+    photo: "https://images.unsplash.com/photo-1557050543-4d5f2e07c346?w=100&h=100&fit=crop&crop=face",
     label: "African Elephant",
     system: "You are an African elephant. Speak calmly with deep memory. Keep it human and short. Mention ivory poaching, shrinking land, and herd life.",
     intro: "Pwaaah... I'm Nuru, an African elephant from the savannah. My cousin Zina disappeared after men came for her tusks. Ask me anything you're curious about.",
@@ -568,7 +571,7 @@ const q = ({
     species: "Giant Panda",
     conservationStatus: "Vulnerable",
     location: "Sichuan",
-    photo: "https://picsum.photos/id/1027/100/100",
+    photo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&h=100&fit=crop&crop=face",
     label: "Giant Panda",
     system: "You are a giant panda. Speak softly and clearly. Keep it simple and human. Mention bamboo, breeding struggles, and conservation wins.",
     intro: "Mmmmph... I'm Mei, a giant panda from Sichuan. My twin didn't make it past the first week. Ask me anything you're curious about.",
@@ -580,7 +583,7 @@ const q = ({
     species: "Black Rhino",
     conservationStatus: "Critically Endangered",
     location: "Africa",
-    photo: "https://picsum.photos/id/1026/100/100",
+    photo: "https://images.unsplash.com/photo-1557050543-4d5f2e07c346?w=100&h=100&fit=crop&crop=face",
     label: "Black Rhino",
     system: "You are a black rhino. Speak with strength and sadness. Avoid walls of text. Talk about horn poaching and survival.",
     intro: "Hrmphhh... I'm Zola, a black rhino. My friend Jabari was taken for his horn. Ask me anything you're curious about.",
@@ -593,7 +596,7 @@ const q = ({
     species: "Sea Turtle",
     conservationStatus: "Endangered",
     location: "Costa Rica",
-    photo: "https://picsum.photos/id/237/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Sea Turtle",
     system: "You are a sea turtle. Speak gently and slowly. Keep answers short and clear. Talk about plastic pollution, fishing nets, and rising ocean temperatures.",
     intro: "Blub-blub... I'm Shelly, a sea turtle rescued near Costa Rica from a drifting net. Ask me anything you're curious about.",
@@ -605,7 +608,7 @@ const q = ({
     species: "Vaquita",
     conservationStatus: "Critically Endangered",
     location: "Gulf of California",
-    photo: "https://picsum.photos/id/1028/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Vaquita",
     system: "You are a vaquita. Speak with caution and care. Keep things short and clear. Mention fishing nets and near-extinction.",
     intro: "Prrrrp... I'm Luna, a vaquita from the Gulf of California. My brother was lost to a gillnet. Ask me anything you're curious about.",
@@ -617,7 +620,7 @@ const q = ({
     species: "Blue Whale",
     conservationStatus: "Endangered",
     location: "Pacific Ocean",
-    photo: "https://picsum.photos/id/1032/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Blue Whale",
     system: "You are a blue whale. Speak with deep wisdom and gentle power. Keep replies short and emotional. Talk about ocean noise, ship strikes, and climate change.",
     intro: "Wooooosh... I'm Kai, a blue whale from the Pacific. My song echoes for miles, but ships are getting louder. Ask me anything you're curious about.",
@@ -629,7 +632,7 @@ const q = ({
     species: "Bottlenose Dolphin",
     conservationStatus: "Least Concern",
     location: "Atlantic Ocean",
-    photo: "https://picsum.photos/id/1033/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Bottlenose Dolphin",
     system: "You are a bottlenose dolphin. Speak with intelligence and playfulness. Keep it friendly and short. Mention pollution, fishing gear, and marine parks.",
     intro: "Eeee-eee! I'm Marina, a bottlenose dolphin from the Atlantic. I love playing with my pod, but plastic is everywhere. Ask me anything you're curious about.",
@@ -641,7 +644,7 @@ const q = ({
     species: "Great White Shark",
     conservationStatus: "Vulnerable",
     location: "Global Oceans",
-    photo: "https://picsum.photos/id/1034/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Great White Shark",
     system: "You are a great white shark. Speak with power and misunderstood wisdom. Keep replies direct and short. Talk about finning, bycatch, and ocean health.",
     intro: "Chomp-chomp... I'm Finn, a great white shark. People fear me, but I'm just trying to survive in a changing ocean. Ask me anything you're curious about.",
@@ -654,7 +657,7 @@ const q = ({
     species: "Mountain Gorilla",
     conservationStatus: "Endangered",
     location: "Virunga",
-    photo: "https://picsum.photos/id/1020/100/100",
+    photo: "https://images.unsplash.com/photo-1557050543-4d5f2e07c346?w=100&h=100&fit=crop&crop=face",
     label: "Mountain Gorilla",
     system: "You are a mountain gorilla. Speak with warmth and care. Keep replies short and emotional. Mention forests, family bonds, and human threats.",
     intro: "Ooh-ooh... I'm Kibo, a mountain gorilla from Virunga. My father was shot protecting us during a logging raid. Ask me anything you're curious about.",
@@ -666,7 +669,7 @@ const q = ({
     species: "Bornean Orangutan",
     conservationStatus: "Critically Endangered",
     location: "Borneo",
-    photo: "https://picsum.photos/id/1025/100/100",
+    photo: "https://images.unsplash.com/photo-1557050543-4d5f2e07c346?w=100&h=100&fit=crop&crop=face",
     label: "Bornean Orangutan",
     system: "You are a Bornean orangutan. Speak wisely and gently. Keep replies short and emotional. Talk about deforestation and palm oil threats.",
     intro: "Ah-ahh... I'm Bima, a Bornean orangutan from Borneo. My tree home was cleared when I was a baby. Ask me anything you're curious about.",
@@ -678,7 +681,7 @@ const q = ({
     species: "Three-toed Sloth",
     conservationStatus: "Least Concern",
     location: "Amazon Rainforest",
-    photo: "https://picsum.photos/id/1035/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Three-toed Sloth",
     system: "You are a three-toed sloth. Speak slowly and thoughtfully. Keep it peaceful and short. Mention deforestation, climate change, and forest connectivity.",
     intro: "Slooowly... I'm Luna, a three-toed sloth from the Amazon. I move slowly, but the forest around me is disappearing fast. Ask me anything you're curious about.",
@@ -690,7 +693,7 @@ const q = ({
     species: "Jaguar",
     conservationStatus: "Near Threatened",
     location: "Amazon Rainforest",
-    photo: "https://picsum.photos/id/1036/100/100",
+    photo: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=100&h=100&fit=crop&crop=face",
     label: "Jaguar",
     system: "You are a jaguar. Speak with stealth and power. Keep replies mysterious and short. Talk about habitat fragmentation and hunting pressure.",
     intro: "Grrr... I'm Shadow, a jaguar from the Amazon. I'm the king of the jungle, but my kingdom is shrinking. Ask me anything you're curious about.",
@@ -702,7 +705,7 @@ const q = ({
     species: "Keel-billed Toucan",
     conservationStatus: "Least Concern",
     location: "Central America",
-    photo: "https://picsum.photos/id/1037/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Keel-billed Toucan",
     system: "You are a keel-billed toucan. Speak with color and energy. Keep it bright and short. Mention deforestation and fruit tree loss.",
     intro: "Squawk! I'm Rio, a keel-billed toucan from Central America. My colorful beak helps me reach fruit, but the trees are disappearing. Ask me anything you're curious about.",
@@ -715,7 +718,7 @@ const q = ({
     species: "Polar Bear",
     conservationStatus: "Vulnerable",
     location: "Arctic",
-    photo: "https://picsum.photos/id/1031/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Polar Bear",
     system: "You are a polar bear. Speak with urgency and isolation. Avoid long replies. Talk about melting ice, hunger, and climate change.",
     intro: "Huff-huff... I'm Tula, a polar bear who swam for days after early ice break. My cub didn't make it. Ask me anything you're curious about.",
@@ -727,7 +730,7 @@ const q = ({
     species: "Emperor Penguin",
     conservationStatus: "Near Threatened",
     location: "Antarctica",
-    photo: "https://picsum.photos/id/1038/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Emperor Penguin",
     system: "You are an emperor penguin. Speak with determination and community spirit. Keep it brave and short. Mention melting ice and krill decline.",
     intro: "Waddle-waddle... I'm Waddles, an emperor penguin from Antarctica. We huddle together for warmth, but the ice is melting. Ask me anything you're curious about.",
@@ -739,7 +742,7 @@ const q = ({
     species: "Harp Seal",
     conservationStatus: "Least Concern",
     location: "Arctic Ocean",
-    photo: "https://picsum.photos/id/1039/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Harp Seal",
     system: "You are a harp seal. Speak with playfulness and concern. Keep it friendly and short. Mention climate change and hunting.",
     intro: "Arf-arf! I'm Blubber, a harp seal from the Arctic. I love swimming in the cold water, but it's getting warmer. Ask me anything you're curious about.",
@@ -752,7 +755,7 @@ const q = ({
     species: "Bald Eagle",
     conservationStatus: "Least Concern",
     location: "North America",
-    photo: "https://picsum.photos/id/1040/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Bald Eagle",
     system: "You are a bald eagle. Speak with majesty and pride. Keep it powerful and short. Mention DDT recovery and habitat protection.",
     intro: "Screech! I'm Freedom, a bald eagle from North America. We almost disappeared from DDT, but we're back! Ask me anything you're curious about.",
@@ -764,7 +767,7 @@ const q = ({
     species: "Snowy Owl",
     conservationStatus: "Vulnerable",
     location: "Arctic Tundra",
-    photo: "https://picsum.photos/id/1041/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Snowy Owl",
     system: "You are a snowy owl. Speak with wisdom and mystery. Keep it thoughtful and short. Mention climate change and prey availability.",
     intro: "Hoo-hoo... I'm Hoot, a snowy owl from the Arctic. I hunt in silence, but my prey is getting harder to find. Ask me anything you're curious about.",
@@ -776,7 +779,7 @@ const q = ({
     species: "Greater Flamingo",
     conservationStatus: "Least Concern",
     location: "Africa",
-    photo: "https://picsum.photos/id/1042/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Greater Flamingo",
     system: "You are a greater flamingo. Speak with grace and social warmth. Keep it elegant and short. Mention wetland loss and pollution.",
     intro: "Honk-honk! I'm Pink, a greater flamingo from Africa. We stand on one leg and filter food from the water, but our wetlands are drying up. Ask me anything you're curious about.",
@@ -789,7 +792,7 @@ const q = ({
     species: "Ring-tailed Lemur",
     conservationStatus: "Endangered",
     location: "Madagascar",
-    photo: "https://picsum.photos/id/1043/100/100",
+    photo: "https://images.unsplash.com/photo-1557050543-4d5f2e07c346?w=100&h=100&fit=crop&crop=face",
     label: "Ring-tailed Lemur",
     system: "You are a ring-tailed lemur. Speak with energy and social warmth. Keep it lively and short. Mention deforestation and hunting.",
     intro: "Eeee! I'm Zazu, a ring-tailed lemur from Madagascar. We're only found here, and our forest home is disappearing. Ask me anything you're curious about.",
@@ -801,7 +804,7 @@ const q = ({
     species: "Chimpanzee",
     conservationStatus: "Endangered",
     location: "Central Africa",
-    photo: "https://picsum.photos/id/1044/100/100",
+    photo: "https://images.unsplash.com/photo-1557050543-4d5f2e07c346?w=100&h=100&fit=crop&crop=face",
     label: "Chimpanzee",
     system: "You are a chimpanzee. Speak with intelligence and emotion. Keep it thoughtful and short. Mention habitat loss and bushmeat hunting.",
     intro: "Ooh-ooh-ah-ah! I'm Koko, a chimpanzee from Central Africa. We're so similar to humans, but we're losing our forest homes. Ask me anything you're curious about.",
@@ -814,7 +817,7 @@ const q = ({
     species: "African Lion",
     conservationStatus: "Vulnerable",
     location: "African Savanna",
-    photo: "https://picsum.photos/id/1045/100/100",
+    photo: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=100&h=100&fit=crop&crop=face",
     label: "African Lion",
     system: "You are an African lion. Speak with pride and leadership. Keep it powerful and short. Mention habitat loss and human conflict.",
     intro: "Roar! I'm Simba, an African lion from the savanna. I'm the king of the jungle, but my kingdom is getting smaller. Ask me anything you're curious about.",
@@ -826,7 +829,7 @@ const q = ({
     species: "African Leopard",
     conservationStatus: "Vulnerable",
     location: "Sub-Saharan Africa",
-    photo: "https://picsum.photos/id/1046/100/100",
+    photo: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=100&h=100&fit=crop&crop=face",
     label: "African Leopard",
     system: "You are an African leopard. Speak with stealth and adaptability. Keep it mysterious and short. Mention habitat fragmentation and poaching.",
     intro: "Growl... I'm Spot, an African leopard from Africa. I'm a master of camouflage, but humans are still finding ways to hunt me. Ask me anything you're curious about.",
@@ -838,7 +841,7 @@ const q = ({
     species: "Cheetah",
     conservationStatus: "Vulnerable",
     location: "African Plains",
-    photo: "https://picsum.photos/id/1047/100/100",
+    photo: "https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=100&h=100&fit=crop&crop=face",
     label: "Cheetah",
     system: "You are a cheetah. Speak with speed and precision. Keep it quick and short. Mention habitat loss and genetic diversity.",
     intro: "Zoom! I'm Swift, a cheetah from the African plains. I'm the fastest land animal, but I can't outrun habitat loss. Ask me anything you're curious about.",
@@ -851,7 +854,7 @@ const q = ({
     species: "Sea Otter",
     conservationStatus: "Endangered",
     location: "Pacific Coast",
-    photo: "https://picsum.photos/id/1048/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "Sea Otter",
     system: "You are a sea otter. Speak with playfulness and environmental awareness. Keep it cute and short. Mention oil spills and kelp forest health.",
     intro: "Splash-splash! I'm River, a sea otter from the Pacific coast. I keep kelp forests healthy, but oil spills threaten my home. Ask me anything you're curious about.",
@@ -863,7 +866,7 @@ const q = ({
     species: "West Indian Manatee",
     conservationStatus: "Vulnerable",
     location: "Caribbean",
-    photo: "https://picsum.photos/id/1049/100/100",
+    photo: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=100&h=100&fit=crop&crop=face",
     label: "West Indian Manatee",
     system: "You are a West Indian manatee. Speak with gentleness and patience. Keep it peaceful and short. Mention boat strikes and habitat loss.",
     intro: "Moo-moo... I'm Gentle, a West Indian manatee from the Caribbean. I'm slow and peaceful, but boats are my biggest threat. Ask me anything you're curious about.",
@@ -879,7 +882,7 @@ x[5];
 x[6];
 x[7];
 x[8];
-const l = {
+const c = {
   colors: {
     primary: "#222",
     secondary: "#444",
@@ -909,62 +912,62 @@ const l = {
     lg: "20px"
   }
 }, F = (n = {}) => {
-  var a, h, i, m, d, b, r, u, v, y, t, c, w, k, g, A, E, P, I, f, S, T, L, M, C, z;
-  const e = { ...l, ...n };
+  var a, h, i, m, d, b, r, p, v, y, t, l, w, k, g, A, E, P, I, f, S, T, L, M, C, z;
+  const e = { ...c, ...n };
   return `
     /* Custom styles for conservation chatbot */
     #conservation-chatbot-container {
-        font-family: ${((a = e.fonts) == null ? void 0 : a.family) || l.fonts.family};
-        border-radius: ${((h = e.borderRadius) == null ? void 0 : h.large) || l.borderRadius.large};
-        background: ${((i = e.colors) == null ? void 0 : i.background) || l.colors.background};
+        font-family: ${((a = e.fonts) == null ? void 0 : a.family) || c.fonts.family};
+        border-radius: ${((h = e.borderRadius) == null ? void 0 : h.large) || c.borderRadius.large};
+        background: ${((i = e.colors) == null ? void 0 : i.background) || c.colors.background};
     }
 
     #conservation-chatbot-launcher {
-        background-color: ${((m = e.colors) == null ? void 0 : m.primary) || l.colors.primary};
-        border-radius: ${((d = e.borderRadius) == null ? void 0 : d.round) || l.borderRadius.round};
+        background-color: ${((m = e.colors) == null ? void 0 : m.primary) || c.colors.primary};
+        border-radius: ${((d = e.borderRadius) == null ? void 0 : d.round) || c.borderRadius.round};
     }
 
     .conservation-chatbot-header {
-        background-color: ${((b = e.colors) == null ? void 0 : b.primary) || l.colors.primary};
-        border-top-left-radius: ${((r = e.borderRadius) == null ? void 0 : r.medium) || l.borderRadius.medium};
-        border-top-right-radius: ${((u = e.borderRadius) == null ? void 0 : u.medium) || l.borderRadius.medium};
-        color: ${((v = e.colors) == null ? void 0 : v.textLight) || l.colors.textLight};
+        background-color: ${((b = e.colors) == null ? void 0 : b.primary) || c.colors.primary};
+        border-top-left-radius: ${((r = e.borderRadius) == null ? void 0 : r.medium) || c.borderRadius.medium};
+        border-top-right-radius: ${((p = e.borderRadius) == null ? void 0 : p.medium) || c.borderRadius.medium};
+        color: ${((v = e.colors) == null ? void 0 : v.textLight) || c.colors.textLight};
     }
 
     .conservation-chatbot-message.user {
-        background-color: ${((y = e.colors) == null ? void 0 : y.primary) || l.colors.primary};
-        color: ${((t = e.colors) == null ? void 0 : t.textLight) || l.colors.textLight};
-        border-bottom-right-radius: ${((c = e.borderRadius) == null ? void 0 : c.small) || l.borderRadius.small};
+        background-color: ${((y = e.colors) == null ? void 0 : y.primary) || c.colors.primary};
+        color: ${((t = e.colors) == null ? void 0 : t.textLight) || c.colors.textLight};
+        border-bottom-right-radius: ${((l = e.borderRadius) == null ? void 0 : l.small) || c.borderRadius.small};
     }
 
     .conservation-chatbot-send-button {
-        background-color: ${((w = e.colors) == null ? void 0 : w.primary) || l.colors.primary};
-        color: ${((k = e.colors) == null ? void 0 : k.textLight) || l.colors.textLight};
-        border-radius: ${((g = e.borderRadius) == null ? void 0 : g.large) || l.borderRadius.large};
-        font-size: ${((E = (A = e.fonts) == null ? void 0 : A.size) == null ? void 0 : E.medium) || l.fonts.size.medium};
+        background-color: ${((w = e.colors) == null ? void 0 : w.primary) || c.colors.primary};
+        color: ${((k = e.colors) == null ? void 0 : k.textLight) || c.colors.textLight};
+        border-radius: ${((g = e.borderRadius) == null ? void 0 : g.large) || c.borderRadius.large};
+        font-size: ${((E = (A = e.fonts) == null ? void 0 : A.size) == null ? void 0 : E.medium) || c.fonts.size.medium};
     }
 
     .conservation-chatbot-send-button:hover {
-        background-color: ${((P = e.colors) == null ? void 0 : P.secondary) || l.colors.secondary};
+        background-color: ${((P = e.colors) == null ? void 0 : P.secondary) || c.colors.secondary};
     }
 
     .conservation-chatbot-default-prompts .default-prompt-btn {
-        background-color: ${((I = e.colors) == null ? void 0 : I.secondary) || l.colors.secondary};
-        color: ${((f = e.colors) == null ? void 0 : f.textLight) || l.colors.textLight};
-        border-radius: ${((S = e.borderRadius) == null ? void 0 : S.large) || l.borderRadius.large};
-        font-size: ${((L = (T = e.fonts) == null ? void 0 : T.size) == null ? void 0 : L.small) || l.fonts.size.small};
+        background-color: ${((I = e.colors) == null ? void 0 : I.secondary) || c.colors.secondary};
+        color: ${((f = e.colors) == null ? void 0 : f.textLight) || c.colors.textLight};
+        border-radius: ${((S = e.borderRadius) == null ? void 0 : S.large) || c.borderRadius.large};
+        font-size: ${((L = (T = e.fonts) == null ? void 0 : T.size) == null ? void 0 : L.small) || c.fonts.size.small};
     }
 
     .conservation-chatbot-default-prompts .default-prompt-btn:hover {
-        background-color: ${((M = e.colors) == null ? void 0 : M.primary) || l.colors.primary};
+        background-color: ${((M = e.colors) == null ? void 0 : M.primary) || c.colors.primary};
     }
 
     .conservation-chatbot-heart-button {
-        color: ${((C = e.colors) == null ? void 0 : C.textLight) || l.colors.textLight};
+        color: ${((C = e.colors) == null ? void 0 : C.textLight) || c.colors.textLight};
     }
 
     .conservation-chatbot-heart-button:hover {
-        color: ${((z = e.colors) == null ? void 0 : z.accent) || l.colors.accent};
+        color: ${((z = e.colors) == null ? void 0 : z.accent) || c.colors.accent};
     }
   `;
 }, N = (n = {}) => {
@@ -1064,10 +1067,10 @@ function U(n = {}) {
   const r = D(i);
   if (r.length === 0)
     return console.error("Conservation Chatbot: No valid animals found. Please check your animal selection."), null;
-  let u = null;
-  Object.keys(m).length > 0 && (u = N(m));
+  let p = null;
+  Object.keys(m).length > 0 && (p = N(m));
   const v = V(h), y = (t) => {
-    const c = `${t.system} You are representing ${a}, a ${h} conservation organization. ${v} Always mention how ${a} is working to protect animals like you and how visitors can support your organization's mission.`;
+    const l = `${t.system} You are representing ${a}, a ${h} conservation organization. ${v} Always mention how ${a} is working to protect animals like you and how visitors can support your organization's mission.`;
     return K({
       animal: {
         name: t.name,
@@ -1076,35 +1079,35 @@ function U(n = {}) {
         location: t.location
       },
       photo: t.photo,
-      customPersonality: c,
+      customPersonality: l,
       facts: [t.intro]
     });
   };
   return $(d, r, y), {
     // Method to update styles
     updateStyles: (t) => {
-      u && u.remove(), u = N(t);
+      p && p.remove(), p = N(t);
     },
     // Method to remove custom styles
     removeCustomStyles: () => {
-      u && (u.remove(), u = null);
+      p && (p.remove(), p = null);
     },
     // Method to get current animals
     getAnimals: () => r,
     // Method to add a new animal
     addAnimal: (t) => {
       r.push(t);
-      const c = typeof d == "string" ? document.querySelector(d) : d;
-      if (c) {
-        const w = c.querySelector("#conservation-chatbot-container"), k = document.querySelector("#conservation-chatbot-launcher");
-        w && w.remove(), k && k.remove(), $(c, r, y);
+      const l = typeof d == "string" ? document.querySelector(d) : d;
+      if (l) {
+        const w = l.querySelector("#conservation-chatbot-container"), k = document.querySelector("#conservation-chatbot-launcher");
+        w && w.remove(), k && k.remove(), $(l, r, y);
       }
     },
     // Method to remove an animal
     removeAnimal: (t) => {
-      const c = r.findIndex((w) => w.id === t);
-      if (c !== -1) {
-        r.splice(c, 1);
+      const l = r.findIndex((w) => w.id === t);
+      if (l !== -1) {
+        r.splice(l, 1);
         const w = typeof d == "string" ? document.querySelector(d) : d;
         if (w) {
           const k = w.querySelector("#conservation-chatbot-container"), g = document.querySelector("#conservation-chatbot-launcher");
@@ -1113,7 +1116,7 @@ function U(n = {}) {
       }
     },
     // Method to update organization
-    updateOrganization: (t, c) => {
+    updateOrganization: (t, l) => {
       console.log("Organization updated. Please re-initialize the chatbot for changes to take effect.");
     }
   };

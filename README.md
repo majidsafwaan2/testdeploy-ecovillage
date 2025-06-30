@@ -267,13 +267,34 @@ const customAnimals = [
     conservationStatus: 'Endangered',
     location: 'Yellowstone',
     photo: '/images/wolf.jpg',
-    label: 'Gray Wolf',
+    label: 'Wolf',
     system: "You are a gray wolf...",
     intro: "Howl! I'm Shadow...",
     color: 'bg-gray-600'
   })
 ];
 ```
+
+### Custom Animal Photos
+NGOs can provide their own photos for each animal to showcase their specific animals or branding:
+
+```javascript
+const zooAnimals = [
+  createAnimal({
+    id: 'tiger',
+    name: 'Raja',
+    species: 'Bengal Tiger',
+    photo: '/images/our-tiger-raja.jpg',
+    // ... other properties
+  })
+];
+```
+
+**Photo Requirements:**
+- Format: JPG, PNG, or WebP
+- Size: 100x100px minimum (auto-resized)
+- Aspect Ratio: Square (1:1) recommended
+- Quality: High resolution for crisp display
 
 ### Dynamic Updates
 ```javascript

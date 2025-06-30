@@ -552,4 +552,313 @@ chatbot.onLoad = () => {
 
 ---
 
-**Ready to make a difference? Start connecting visitors with endangered animals today!** 
+**Ready to make a difference? Start connecting visitors with endangered animals today!**
+
+## Configuration Options
+
+### Organization Context
+```javascript
+{
+  organization: 'Wildlife Conservation Society',
+  organizationType: 'wildlife',
+  organizationContext: 'We focus on protecting endangered species through habitat preservation and anti-poaching efforts.'
+}
+```
+
+### Animal Selection
+```javascript
+// Use specific animals
+animals: 'Bengal Tiger, African Elephant, Mountain Gorilla'
+
+// Use all animals from a conservation focus
+animals: 'wildlife' // or 'marine', 'forest', 'climate', 'bird', 'primate', 'big-cat', 'marine-mammal'
+
+// Use all animals
+animals: 'all'
+```
+
+### Custom Animals
+```javascript
+import { createAnimal } from 'conservation-chatbot/animals';
+
+const customAnimals = [
+  createAnimal({
+    id: 'local-wolf',
+    name: 'Shadow',
+    species: 'Gray Wolf',
+    conservationStatus: 'Endangered',
+    location: 'Yellowstone',
+    photo: '/images/wolf.jpg',
+    label: 'Wolf',
+    system: "You are a gray wolf...",
+    intro: "Howl! I'm Shadow...",
+    color: 'bg-gray-600'
+  })
+];
+
+initConservationChatbot({
+  apiKey: 'your-api-key',
+  organization: 'Your Org',
+  animals: customAnimals
+});
+```
+
+## Customizing Animal Photos
+
+### Default Photos
+The library comes with high-quality animal photos from Unsplash. These are automatically used for all animals unless custom photos are provided.
+
+### Custom Photos for NGOs
+NGOs can provide their own photos for each animal to showcase their specific animals or branding:
+
+```javascript
+import { createAnimal } from 'conservation-chatbot/animals';
+
+const customAnimals = [
+  createAnimal({
+    id: 'tiger',
+    name: 'Raja',
+    species: 'Bengal Tiger',
+    conservationStatus: 'Endangered',
+    location: 'Sundarbans',
+    photo: '/images/our-tiger-raja.jpg', // Your organization's photo
+    label: 'Bengal Tiger',
+    system: "You are a Bengal tiger...",
+    intro: "Rawrr... I'm Raja...",
+    color: 'bg-orange-500'
+  }),
+  createAnimal({
+    id: 'elephant',
+    name: 'Nuru',
+    species: 'African Elephant',
+    conservationStatus: 'Endangered',
+    location: 'Savannah',
+    photo: 'https://your-org.com/images/nuru-elephant.jpg', // External URL
+    label: 'African Elephant',
+    system: "You are an African elephant...",
+    intro: "Pwaaah... I'm Nuru...",
+    color: 'bg-gray-600'
+  })
+];
+```
+
+### Photo Requirements
+- **Format**: JPG, PNG, or WebP
+- **Size**: Recommended 100x100px minimum (will be automatically resized)
+- **Aspect Ratio**: Square (1:1) works best
+- **Quality**: High resolution for crisp display
+- **Content**: Clear, professional animal photos
+
+### Photo Sources
+- Your organization's own photography
+- Licensed stock photos
+- Photos from your conservation partners
+- Photos from your sanctuary or zoo
+
+### Example Implementation
+```javascript
+// Complete example with custom photos
+const zooAnimals = [
+  createAnimal({
+    id: 'tiger',
+    name: 'Raja',
+    species: 'Bengal Tiger',
+    photo: '/assets/animals/raja-tiger.jpg', // Your zoo's tiger photo
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'elephant',
+    name: 'Nuru',
+    species: 'African Elephant',
+    photo: '/assets/animals/nuru-elephant.jpg', // Your zoo's elephant photo
+    // ... other properties
+  })
+];
+
+initConservationChatbot({
+  apiKey: 'your-api-key',
+  organization: 'City Zoo Conservation',
+  organizationType: 'wildlife',
+  animals: zooAnimals,
+  styles: {
+    colors: {
+      primary: '#2d5016',
+      secondary: '#4a7c59'
+    }
+  }
+});
+```
+
+## Styling Customization
+
+### Colors
+```javascript
+styles: {
+  colors: {
+    primary: '#2d5016',      // Main color
+    secondary: '#4a7c59',    // Secondary color
+    accent: '#8bc34a',       // Accent color
+    background: 'rgba(255,255,255,0.2)',
+    text: '#333',
+    textLight: 'white'
+  }
+}
+```
+
+### Fonts
+```javascript
+styles: {
+  fonts: {
+    family: 'Georgia, serif',
+    size: {
+      small: '13px',
+      medium: '14px',
+      large: '16px'
+    }
+  }
+}
+```
+
+### Corner Sharpness
+```javascript
+styles: {
+  borderRadius: {
+    small: '6px',
+    medium: '12px',
+    large: '18px',
+    round: '50%'
+  }
+}
+```
+
+### Pre-built Themes
+```javascript
+import { themePresets } from 'conservation-chatbot';
+
+styles: themePresets.nature  // or 'dark', 'light', 'ocean'
+```
+
+## Organization Types
+
+### Wildlife Conservation
+```javascript
+organizationType: 'wildlife'
+// Includes: Bengal Tiger, African Elephant, Giant Panda, Black Rhino
+```
+
+### Marine Conservation
+```javascript
+organizationType: 'marine'
+// Includes: Sea Turtle, Vaquita, Blue Whale, Bottlenose Dolphin, Great White Shark
+```
+
+### Forest Conservation
+```javascript
+organizationType: 'forest'
+// Includes: Mountain Gorilla, Bornean Orangutan, Three-toed Sloth, Jaguar, Keel-billed Toucan
+```
+
+### Climate Conservation
+```javascript
+organizationType: 'climate'
+// Includes: Polar Bear, Emperor Penguin, Harp Seal
+```
+
+### Bird Conservation
+```javascript
+organizationType: 'bird'
+// Includes: Bald Eagle, Snowy Owl, Greater Flamingo
+```
+
+### Primate Conservation
+```javascript
+organizationType: 'primate'
+// Includes: Ring-tailed Lemur, Chimpanzee
+```
+
+### Big Cat Conservation
+```javascript
+organizationType: 'big-cat'
+// Includes: African Lion, African Leopard, Cheetah
+```
+
+### Marine Mammal Conservation
+```javascript
+organizationType: 'marine-mammal'
+// Includes: Sea Otter, West Indian Manatee
+```
+
+## Complete Examples
+
+### Wildlife Sanctuary
+```javascript
+import { initConservationChatbot } from 'conservation-chatbot';
+
+initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Wildlife Sanctuary',
+  organizationType: 'wildlife',
+  organizationContext: 'We rescue and rehabilitate injured wildlife, focusing on big cats and elephants.',
+  animals: 'Bengal Tiger, African Elephant, Mountain Gorilla',
+  styles: {
+    colors: {
+      primary: '#8B4513',
+      secondary: '#A0522D',
+      accent: '#D2691E'
+    }
+  }
+});
+```
+
+### Marine Conservation NGO
+```javascript
+initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Ocean Protectors',
+  organizationType: 'marine',
+  organizationContext: 'We work to protect marine ecosystems and endangered sea life through research and advocacy.',
+  animals: 'Sea Turtle, Blue Whale, Vaquita',
+  styles: themePresets.ocean
+});
+```
+
+### Zoo with Custom Animals
+```javascript
+import { createAnimal } from 'conservation-chatbot/animals';
+
+const zooAnimals = [
+  createAnimal({
+    id: 'local-tiger',
+    name: 'Raja',
+    species: 'Bengal Tiger',
+    photo: '/images/our-tiger.jpg',
+    // ... other properties
+  })
+];
+
+initConservationChatbot({
+  apiKey: 'your-api-key',
+  organization: 'City Zoo',
+  animals: zooAnimals
+});
+```
+
+## API Key Setup
+
+1. Get a Google Gemini API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Add the key to your configuration
+3. The chatbot will automatically handle AI conversations
+
+## Best Practices
+
+1. **Start Simple**: Begin with default animals and styling
+2. **Test Thoroughly**: Ensure your API key works and responses are appropriate
+3. **Customize Gradually**: Add custom animals and styling as needed
+4. **Monitor Usage**: Track API usage and costs
+5. **Update Regularly**: Keep animal information current
+
+## Support
+
+- [GitHub Repository](https://github.com/majidsafwaan2/conservation-chatbot)
+- [API Documentation](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/API.md)
+- [Customization Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/CUSTOMIZATION.md) 

@@ -267,6 +267,7 @@ const CHATBOT_STYLES = `
         color: #333; /* Dark text for input */
         border-radius: 20px; /* Rounded input field */
         margin-right: 8px; /* Space between input and send button */
+        margin-left: 2px; /* Move input 2px to the right */
         font-size: 14px; /* Font size for input text */
         outline: none; /* Removes outline on focus */
         min-width: 0; /* Allows the input field to shrink on smaller screens */
@@ -337,6 +338,8 @@ const CHATBOT_STYLES = `
 
     .conservation-chatbot-heart-button {
         margin-right: 0;
+        height: 32px; /* Reduced height to remove bottom sliver */
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 90%); /* Clip bottom 10% */
     }
 `;
 
@@ -448,7 +451,7 @@ export function renderChatbotUI(containerElement, animals, createChatbotInstance
     heartButton.style.color = 'white';
     heartButton.style.cursor = 'pointer';
     heartButton.style.transition = 'color 0.2s';
-    heartButton.style.height = '36px'; // Taller heart
+    heartButton.style.height = '32px'; // Reduced height to remove bottom sliver
     heartButton.style.borderRadius = '50%'; // Fully rounded, less pointy
     heartButton.style.display = 'flex';
     heartButton.style.alignItems = 'center';
