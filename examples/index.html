@@ -195,7 +195,7 @@
 <body>
     <div class="container">
         <h1>Conservation Chatbot</h1>
-        <p class="subtitle">An interactive AI chatbot that creates meaningful connections between visitors and endangered animals. By allowing users to have personal conversations with animals like Raja the Tiger or Shelly the Sea Turtle, the chatbot fosters emotional engagement and empathy. This deep, personal connection transforms abstract conservation concepts into relatable experiences, significantly increasing visitor engagement and driving support for conservation organizations. The result is higher donation rates, increased volunteer sign-ups, and stronger advocacy for endangered species protection.</p>
+        <p class="subtitle">An interactive AI chatbot that creates meaningful connections between visitors and endangered animals. By allowing users to have personal conversations with animals like Raja the Bengal Tiger or Shelly the Sea Turtle, the chatbot fosters emotional engagement and empathy. This deep, personal connection transforms abstract conservation concepts into relatable experiences, significantly increasing visitor engagement and driving support for conservation organizations. The result is higher donation rates, increased volunteer sign-ups, and stronger advocacy for endangered species protection.</p>
         
         <div class="stats">
             <div class="stat">
@@ -227,62 +227,62 @@
             </div>
             <div class="feature">
                 <h3>25+ Endangered Animals</h3>
-                <p>Comprehensive collection organized by major conservation NGO focus areas and priorities</p>
+                <p>Comprehensive collection organized by major conservation focus areas and priorities</p>
             </div>
         </div>
         
         <h2>Available Animals by Conservation Focus</h2>
         <div class="animal-grid">
             <div class="animal-category">
-                <h4>WWF & Global Wildlife</h4>
+                <h4>Global Wildlife Conservation</h4>
                 <ul class="animal-list">
-                    <li>Raja (Tiger) - Endangered</li>
-                    <li>Nuru (Elephant) - Endangered</li>
-                    <li>Mei (Panda) - Vulnerable</li>
-                    <li>Zola (Rhino) - Critically Endangered</li>
+                    <li>Raja (Bengal Tiger) - Endangered</li>
+                    <li>Nuru (African Elephant) - Endangered</li>
+                    <li>Mei (Giant Panda) - Vulnerable</li>
+                    <li>Zola (Black Rhino) - Critically Endangered</li>
                 </ul>
             </div>
             <div class="animal-category">
-                <h4>Sea Shepherd & Marine</h4>
+                <h4>Marine Conservation</h4>
                 <ul class="animal-list">
                     <li>Shelly (Sea Turtle) - Endangered</li>
                     <li>Luna (Vaquita) - Critically Endangered</li>
                     <li>Kai (Blue Whale) - Endangered</li>
-                    <li>Marina (Dolphin) - Least Concern</li>
-                    <li>Finn (Shark) - Vulnerable</li>
+                    <li>Marina (Bottlenose Dolphin) - Least Concern</li>
+                    <li>Finn (Great White Shark) - Vulnerable</li>
                 </ul>
             </div>
             <div class="animal-category">
-                <h4>Rainforest Alliance & Forest</h4>
+                <h4>Forest Conservation</h4>
                 <ul class="animal-list">
-                    <li>Kibo (Gorilla) - Endangered</li>
-                    <li>Bima (Orangutan) - Critically Endangered</li>
-                    <li>Luna (Sloth) - Least Concern</li>
+                    <li>Kibo (Mountain Gorilla) - Endangered</li>
+                    <li>Bima (Bornean Orangutan) - Critically Endangered</li>
+                    <li>Luna (Three-toed Sloth) - Least Concern</li>
                     <li>Shadow (Jaguar) - Near Threatened</li>
-                    <li>Rio (Toucan) - Least Concern</li>
+                    <li>Rio (Keel-billed Toucan) - Least Concern</li>
                 </ul>
             </div>
             <div class="animal-category">
-                <h4>Climate Organizations</h4>
+                <h4>Climate Conservation</h4>
                 <ul class="animal-list">
                     <li>Tula (Polar Bear) - Vulnerable</li>
-                    <li>Waddles (Penguin) - Near Threatened</li>
-                    <li>Blubber (Seal) - Least Concern</li>
+                    <li>Waddles (Emperor Penguin) - Near Threatened</li>
+                    <li>Blubber (Harp Seal) - Least Concern</li>
                 </ul>
             </div>
             <div class="animal-category">
                 <h4>Bird Conservation</h4>
                 <ul class="animal-list">
-                    <li>Freedom (Eagle) - Least Concern</li>
-                    <li>Hoot (Owl) - Vulnerable</li>
-                    <li>Pink (Flamingo) - Least Concern</li>
+                    <li>Freedom (Bald Eagle) - Least Concern</li>
+                    <li>Hoot (Snowy Owl) - Vulnerable</li>
+                    <li>Pink (Greater Flamingo) - Least Concern</li>
                 </ul>
             </div>
             <div class="animal-category">
                 <h4>Big Cat Conservation</h4>
                 <ul class="animal-list">
-                    <li>Simba (Lion) - Vulnerable</li>
-                    <li>Spot (Leopard) - Vulnerable</li>
+                    <li>Simba (African Lion) - Vulnerable</li>
+                    <li>Spot (African Leopard) - Vulnerable</li>
                     <li>Swift (Cheetah) - Vulnerable</li>
                 </ul>
             </div>
@@ -295,19 +295,19 @@
 <span class="highlight">const</span> chatbot = initConservationChatbot({
   apiKey: <span class="highlight">'your-gemini-api-key'</span>,
   organization: <span class="highlight">'Your Organization Name'</span>,
-  animals: <span class="highlight">'Panda, Tiger'</span>
+  animals: <span class="highlight">'Giant Panda, Bengal Tiger'</span>
 });
 </div>
         
         <h2>Organization-Specific Examples</h2>
         
         <div class="code-example">
-<span class="highlight">// Wildlife Conservation NGO</span>
+<span class="highlight">// Wildlife Conservation Organization</span>
 initConservationChatbot({
   apiKey: 'your-key',
   organization: 'Your Wildlife Organization',
   organizationType: 'wildlife',
-  animals: 'Tiger, Elephant, Gorilla'
+  animals: 'Bengal Tiger, African Elephant, Mountain Gorilla'
 });
 
 <span class="highlight">// Marine Conservation Organization</span>
@@ -323,15 +323,15 @@ initConservationChatbot({
   apiKey: 'your-key',
   organization: 'Your Forest Organization',
   organizationType: 'forest',
-  animals: 'Orangutan, Gorilla, Jaguar'
+  animals: 'Bornean Orangutan, Mountain Gorilla, Jaguar'
 });
 
-<span class="highlight">// Climate Change Organization</span>
+<span class="highlight">// Climate Conservation Organization</span>
 initConservationChatbot({
   apiKey: 'your-key',
   organization: 'Your Climate Organization',
   organizationType: 'climate',
-  animals: 'Polar Bear, Penguin, Seal'
+  animals: 'Polar Bear, Emperor Penguin, Harp Seal'
 });
 </div>
         
@@ -355,7 +355,7 @@ initConservationChatbot({
             apiKey: 'demo-key', // Replace with your actual API key
             organization: 'Conservation Demo',
             organizationType: 'wildlife',
-            animals: 'Tiger, Panda, Elephant, Gorilla, Sea Turtle',
+            animals: 'Bengal Tiger, Giant Panda, African Elephant, Mountain Gorilla, Sea Turtle',
             styles: {
                 colors: {
                     primary: '#667eea',

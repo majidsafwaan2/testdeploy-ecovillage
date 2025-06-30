@@ -1,6 +1,6 @@
 # Conservation Chatbot
 
-**An interactive AI chatbot that creates meaningful connections between visitors and endangered animals. By allowing users to have personal conversations with animals like Raja the Tiger or Shelly the Sea Turtle, the chatbot fosters emotional engagement and empathy. This deep, personal connection transforms abstract conservation concepts into relatable experiences, significantly increasing visitor engagement and driving support for conservation organizations. The result is higher donation rates, increased volunteer sign-ups, and stronger advocacy for endangered species protection.**
+**An interactive AI chatbot that creates meaningful connections between visitors and endangered animals. By allowing users to have personal conversations with animals like Raja the Bengal Tiger or Shelly the Sea Turtle, the chatbot fosters emotional engagement and empathy. This deep, personal connection transforms abstract conservation concepts into relatable experiences, significantly increasing visitor engagement and driving support for conservation organizations. The result is higher donation rates, increased volunteer sign-ups, and stronger advocacy for endangered species protection.**
 
 [![npm version](https://badge.fury.io/js/conservation-chatbot.svg)](https://badge.fury.io/js/conservation-chatbot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -13,7 +13,7 @@ import { initConservationChatbot } from 'conservation-chatbot';
 const chatbot = initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Organization Name',
-  animals: 'Panda, Tiger'
+  animals: 'Giant Panda, Bengal Tiger'
 });
 ```
 
@@ -54,7 +54,7 @@ initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Organization',
   organizationType: 'wildlife',
-  animals: 'Tiger, Elephant'
+  animals: 'Bengal Tiger, African Elephant'
 });
 ```
 
@@ -85,7 +85,7 @@ The chatbot automatically tailors responses based on your organization type:
 
 ### Simple String Selection
 ```javascript
-animals: 'Panda, Tiger, Elephant'  // Just specify what you want
+animals: 'Giant Panda, Bengal Tiger, African Elephant'  // Just specify what you want
 ```
 
 ### All Animals
@@ -95,48 +95,48 @@ animals: 'Panda, Tiger, Elephant'  // Just specify what you want
 
 ### Available Animals by Conservation Focus
 
-#### **WWF & Global Wildlife Conservation**
-- **Raja** (Tiger) - Endangered
-- **Nuru** (Elephant) - Endangered
-- **Mei** (Panda) - Vulnerable
-- **Zola** (Rhino) - Critically Endangered
+#### **Global Wildlife Conservation**
+- **Raja** (Bengal Tiger) - Endangered
+- **Nuru** (African Elephant) - Endangered
+- **Mei** (Giant Panda) - Vulnerable
+- **Zola** (Black Rhino) - Critically Endangered
 
-#### **Sea Shepherd & Marine Conservation**
+#### **Marine Conservation**
 - **Shelly** (Sea Turtle) - Endangered
 - **Luna** (Vaquita) - Critically Endangered
 - **Kai** (Blue Whale) - Endangered
-- **Marina** (Dolphin) - Least Concern
-- **Finn** (Shark) - Vulnerable
+- **Marina** (Bottlenose Dolphin) - Least Concern
+- **Finn** (Great White Shark) - Vulnerable
 
-#### **Rainforest Alliance & Forest Conservation**
-- **Kibo** (Gorilla) - Endangered
-- **Bima** (Orangutan) - Critically Endangered
-- **Luna** (Sloth) - Least Concern
+#### **Forest Conservation**
+- **Kibo** (Mountain Gorilla) - Endangered
+- **Bima** (Bornean Orangutan) - Critically Endangered
+- **Luna** (Three-toed Sloth) - Least Concern
 - **Shadow** (Jaguar) - Near Threatened
-- **Rio** (Toucan) - Least Concern
+- **Rio** (Keel-billed Toucan) - Least Concern
 
-#### **Polar Bears International & Climate Organizations**
+#### **Climate Conservation**
 - **Tula** (Polar Bear) - Vulnerable
-- **Waddles** (Penguin) - Near Threatened
-- **Blubber** (Seal) - Least Concern
+- **Waddles** (Emperor Penguin) - Near Threatened
+- **Blubber** (Harp Seal) - Least Concern
 
-#### **Bird Conservation Organizations**
-- **Freedom** (Eagle) - Least Concern
-- **Hoot** (Owl) - Vulnerable
-- **Pink** (Flamingo) - Least Concern
+#### **Bird Conservation**
+- **Freedom** (Bald Eagle) - Least Concern
+- **Hoot** (Snowy Owl) - Vulnerable
+- **Pink** (Greater Flamingo) - Least Concern
 
-#### **Primate Conservation Organizations**
-- **Zazu** (Lemur) - Endangered
+#### **Primate Conservation**
+- **Zazu** (Ring-tailed Lemur) - Endangered
 - **Koko** (Chimpanzee) - Endangered
 
-#### **Big Cat Conservation Organizations**
-- **Simba** (Lion) - Vulnerable
-- **Spot** (Leopard) - Vulnerable
+#### **Big Cat Conservation**
+- **Simba** (African Lion) - Vulnerable
+- **Spot** (African Leopard) - Vulnerable
 - **Swift** (Cheetah) - Vulnerable
 
 #### **Marine Mammal Conservation**
-- **River** (Otter) - Endangered
-- **Gentle** (Manatee) - Vulnerable
+- **River** (Sea Otter) - Endangered
+- **Gentle** (West Indian Manatee) - Vulnerable
 
 ## Customization
 
@@ -189,7 +189,7 @@ styles: themePresets.nature  // or 'dark', 'light', 'ocean'
 
 ## Complete Examples
 
-### Wildlife Organization
+### Wildlife Conservation Organization
 ```javascript
 import { initConservationChatbot } from 'conservation-chatbot';
 
@@ -197,7 +197,7 @@ initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Wildlife Organization',
   organizationType: 'wildlife',
-  animals: 'Tiger, Elephant, Gorilla',
+  animals: 'Bengal Tiger, African Elephant, Mountain Gorilla',
   styles: {
     colors: {
       primary: '#8B4513',
@@ -208,7 +208,7 @@ initConservationChatbot({
 });
 ```
 
-### Marine Organization
+### Marine Conservation Organization
 ```javascript
 import { initConservationChatbot, themePresets } from 'conservation-chatbot';
 
@@ -229,12 +229,12 @@ initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Forest Organization',
   organizationType: 'forest',
-  animals: 'Orangutan, Gorilla, Jaguar',
+  animals: 'Bornean Orangutan, Mountain Gorilla, Jaguar',
   styles: themePresets.nature
 });
 ```
 
-### Climate Organization
+### Climate Conservation Organization
 ```javascript
 import { initConservationChatbot } from 'conservation-chatbot';
 
@@ -242,7 +242,7 @@ initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Climate Organization',
   organizationType: 'climate',
-  animals: 'Polar Bear, Penguin, Seal',
+  animals: 'Polar Bear, Emperor Penguin, Harp Seal',
   styles: {
     colors: {
       primary: '#2E8B57',
@@ -267,7 +267,7 @@ const customAnimals = [
     conservationStatus: 'Endangered',
     location: 'Yellowstone',
     photo: '/images/wolf.jpg',
-    label: 'Wolf',
+    label: 'Gray Wolf',
     system: "You are a gray wolf...",
     intro: "Howl! I'm Shadow...",
     color: 'bg-gray-600'
@@ -310,7 +310,7 @@ chatbot.updateStyles({
             apiKey: 'your-gemini-api-key',
             organization: 'Your Organization',
             organizationType: 'wildlife',
-            animals: 'Tiger, Elephant'
+            animals: 'Bengal Tiger, Giant Panda'
         });
     </script>
 </body>
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
         apiKey: '<?php echo get_option("gemini_api_key"); ?>',
         organization: '<?php echo get_bloginfo("name"); ?>',
         organizationType: 'wildlife',
-        animals: 'Tiger, Panda'
+        animals: 'Bengal Tiger, Giant Panda'
     });
 });
 </script>
