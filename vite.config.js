@@ -13,9 +13,25 @@ export default defineConfig({
   build: {
     outDir: '../dist', // Output compiled files to the 'dist' folder in the project root
     emptyOutDir: true, // Clear the 'dist' folder before each build
-    // Note: 'build.lib' configuration is REMOVED here.
-    // This config is now focused on building the demo site for GitHub Pages.
-    // If you need to build the npm library package, that would be a separate Vite config or command.
+    
+    // Library build configuration for npm
+    lib: {
+      entry: path.resolve(projectRoot, 'src/index.js'),
+      name: 'ConservationChatbot',
+      fileName: (format) => `conservation-chatbot.${format}.js`,
+      formats: ['es', 'umd']
+    },
+    
+    rollupOptions: {
+      // External dependencies that should not be bundled
+      external: ['@google/generative-ai'],
+      output: {
+        // Global variables for UMD build
+        globals: {
+          '@google/generative-ai': 'GoogleGenerativeAI'
+        }
+      }
+    }
   },
 
   // Configuration for the development server
