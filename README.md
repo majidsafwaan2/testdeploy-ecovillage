@@ -278,16 +278,45 @@ const customAnimals = [
 ### Custom Animal Photos
 NGOs can provide their own photos for each animal to showcase their specific animals or branding:
 
+#### Step 1: Create Images Folder
+```bash
+mkdir images
+mkdir images/animals
+```
+
+#### Step 2: Add Your Photos
+Place your animal photos in the `images/animals/` folder:
+- `raja-tiger.jpg` (for Raja the Bengal Tiger)
+- `nuru-elephant.jpg` (for Nuru the African Elephant)
+- `mei-panda.jpg` (for Mei the Giant Panda)
+- `shelly-turtle.jpg` (for Shelly the Sea Turtle)
+
+#### Step 3: Update Code
 ```javascript
-const zooAnimals = [
+import { createAnimal } from 'conservation-chatbot/animals';
+
+const customAnimals = [
   createAnimal({
     id: 'tiger',
     name: 'Raja',
     species: 'Bengal Tiger',
-    photo: '/images/our-tiger-raja.jpg',
+    photo: '/images/animals/raja-tiger.jpg', // Your photo path
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'elephant',
+    name: 'Nuru',
+    species: 'African Elephant',
+    photo: '/images/animals/nuru-elephant.jpg', // Your photo path
     // ... other properties
   })
 ];
+
+initConservationChatbot({
+  apiKey: 'your-api-key',
+  organization: 'Your Organization',
+  animals: customAnimals
+});
 ```
 
 **Photo Requirements:**

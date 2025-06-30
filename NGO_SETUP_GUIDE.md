@@ -621,7 +621,7 @@ const customAnimals = [
     species: 'Bengal Tiger',
     conservationStatus: 'Endangered',
     location: 'Sundarbans',
-    photo: '/images/our-tiger-raja.jpg', // Your organization's photo
+    photo: '/images/animals/raja-tiger.jpg', // Your organization's photo
     label: 'Bengal Tiger',
     system: "You are a Bengal tiger...",
     intro: "Rawrr... I'm Raja...",
@@ -831,7 +831,7 @@ const zooAnimals = [
     id: 'local-tiger',
     name: 'Raja',
     species: 'Bengal Tiger',
-    photo: '/images/our-tiger.jpg',
+    photo: '/images/animals/raja-tiger.jpg',
     // ... other properties
   })
 ];
@@ -861,4 +861,223 @@ initConservationChatbot({
 
 - [GitHub Repository](https://github.com/majidsafwaan2/conservation-chatbot)
 - [API Documentation](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/API.md)
-- [Customization Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/CUSTOMIZATION.md) 
+- [Customization Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/CUSTOMIZATION.md)
+
+## Adding Your Own Animal Photos
+
+### Step 1: Create an Images Folder
+First, create a folder in your project to store your animal photos:
+
+```bash
+# Create an images folder in your project
+mkdir images
+mkdir images/animals
+```
+
+**Folder Structure:**
+```
+your-project/
+├── images/
+│   └── animals/
+│       ├── raja-tiger.jpg
+│       ├── nuru-elephant.jpg
+│       ├── mei-panda.jpg
+│       └── ...
+├── index.html
+└── script.js
+```
+
+### Step 2: Add Your Animal Photos
+Place your animal photos in the `images/animals/` folder. Use descriptive names:
+
+**Recommended File Names:**
+- `raja-tiger.jpg` (for Raja the Bengal Tiger)
+- `nuru-elephant.jpg` (for Nuru the African Elephant)
+- `mei-panda.jpg` (for Mei the Giant Panda)
+- `shelly-turtle.jpg` (for Shelly the Sea Turtle)
+- `kibo-gorilla.jpg` (for Kibo the Mountain Gorilla)
+
+### Step 3: Update Your Code
+Replace the default placeholder images with your own photos:
+
+```javascript
+import { createAnimal } from 'conservation-chatbot/animals';
+
+// Create custom animals with your own photos
+const customAnimals = [
+  createAnimal({
+    id: 'tiger',
+    name: 'Raja',
+    species: 'Bengal Tiger',
+    conservationStatus: 'Endangered',
+    location: 'Sundarbans',
+    photo: '/images/animals/raja-tiger.jpg', // Your photo path
+    label: 'Bengal Tiger',
+    system: "You are a Bengal tiger...",
+    intro: "Rawrr... I'm Raja...",
+    color: 'bg-orange-500'
+  }),
+  createAnimal({
+    id: 'elephant',
+    name: 'Nuru',
+    species: 'African Elephant',
+    conservationStatus: 'Endangered',
+    location: 'Savannah',
+    photo: '/images/animals/nuru-elephant.jpg', // Your photo path
+    label: 'African Elephant',
+    system: "You are an African elephant...",
+    intro: "Pwaaah... I'm Nuru...",
+    color: 'bg-gray-600'
+  }),
+  createAnimal({
+    id: 'panda',
+    name: 'Mei',
+    species: 'Giant Panda',
+    conservationStatus: 'Vulnerable',
+    location: 'Sichuan',
+    photo: '/images/animals/mei-panda.jpg', // Your photo path
+    label: 'Giant Panda',
+    system: "You are a giant panda...",
+    intro: "Mmmmph... I'm Mei...",
+    color: 'bg-black'
+  })
+];
+
+// Initialize with your custom animals
+initConservationChatbot({
+  apiKey: 'your-api-key',
+  organization: 'Your Conservation Organization',
+  animals: customAnimals
+});
+```
+
+### Step 4: Alternative - Use External URLs
+If you prefer to host images externally (e.g., on your website or CDN):
+
+```javascript
+const customAnimals = [
+  createAnimal({
+    id: 'tiger',
+    name: 'Raja',
+    species: 'Bengal Tiger',
+    photo: 'https://your-website.com/images/animals/raja-tiger.jpg',
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'elephant',
+    name: 'Nuru',
+    species: 'African Elephant',
+    photo: 'https://your-website.com/images/animals/nuru-elephant.jpg',
+    // ... other properties
+  })
+];
+```
+
+### Photo Requirements
+
+**Format:** JPG, PNG, or WebP
+**Size:** 100x100px minimum (will be automatically resized)
+**Aspect Ratio:** Square (1:1) works best
+**Quality:** High resolution for crisp display
+**Content:** Clear, professional animal photos
+
+### Complete Example with All Animals
+
+```javascript
+import { createAnimal } from 'conservation-chatbot/animals';
+
+const allCustomAnimals = [
+  // Global Wildlife Conservation
+  createAnimal({
+    id: 'tiger',
+    name: 'Raja',
+    species: 'Bengal Tiger',
+    photo: '/images/animals/raja-tiger.jpg',
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'elephant',
+    name: 'Nuru',
+    species: 'African Elephant',
+    photo: '/images/animals/nuru-elephant.jpg',
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'panda',
+    name: 'Mei',
+    species: 'Giant Panda',
+    photo: '/images/animals/mei-panda.jpg',
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'rhino',
+    name: 'Zola',
+    species: 'Black Rhino',
+    photo: '/images/animals/zola-rhino.jpg',
+    // ... other properties
+  }),
+
+  // Marine Conservation
+  createAnimal({
+    id: 'turtle',
+    name: 'Shelly',
+    species: 'Sea Turtle',
+    photo: '/images/animals/shelly-turtle.jpg',
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'whale',
+    name: 'Kai',
+    species: 'Blue Whale',
+    photo: '/images/animals/kai-whale.jpg',
+    // ... other properties
+  }),
+
+  // Forest Conservation
+  createAnimal({
+    id: 'gorilla',
+    name: 'Kibo',
+    species: 'Mountain Gorilla',
+    photo: '/images/animals/kibo-gorilla.jpg',
+    // ... other properties
+  }),
+  createAnimal({
+    id: 'orangutan',
+    name: 'Bima',
+    species: 'Bornean Orangutan',
+    photo: '/images/animals/bima-orangutan.jpg',
+    // ... other properties
+  }),
+
+  // Add more animals as needed...
+];
+
+initConservationChatbot({
+  apiKey: 'your-api-key',
+  organization: 'Your Organization',
+  animals: allCustomAnimals
+});
+```
+
+### Tips for Great Animal Photos
+
+1. **Use High-Quality Images:** Clear, well-lit photos work best
+2. **Square Format:** Crop images to 1:1 aspect ratio for best results
+3. **Consistent Style:** Use similar lighting and background for all photos
+4. **Professional Look:** Avoid blurry or low-resolution images
+5. **Animal Focus:** Make sure the animal is clearly visible and centered
+
+### Testing Your Photos
+
+After adding your photos, test them by:
+
+1. Opening your website in a browser
+2. Clicking the chatbot launcher
+3. Checking that all animal photos display correctly
+4. Testing the dropdown to switch between animals
+
+If photos don't load, check:
+- File paths are correct
+- File names match exactly (case-sensitive)
+- Images are in the right format (JPG, PNG, WebP)
+- Web server is serving the images correctly 

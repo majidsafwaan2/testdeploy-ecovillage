@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2024-12-30
+
+### Fixed
+- **Animal Photos**: Replaced problematic Unsplash URLs with reliable placeholder images
+- **Photo Loading**: All animal photos now load correctly with appropriate emojis and colors
+- **Photo Relevance**: Each animal now has a relevant emoji and color scheme
+
+### Added
+- **Detailed Photo Instructions**: Comprehensive step-by-step guide for NGOs to add their own animal photos
+- **Folder Structure Guide**: Clear instructions for creating `images/animals/` folder structure
+- **Code Examples**: Complete code examples showing how to replace default photos with custom ones
+- **Photo Requirements**: Detailed specifications for image format, size, and quality
+- **Testing Guide**: Instructions for testing custom photos after implementation
+
+### Changed
+- **Default Photos**: Now use reliable placeholder images with animal emojis instead of broken Unsplash URLs
+- **Documentation**: Enhanced NGO Setup Guide and README with detailed photo customization instructions
+- **Examples**: Updated all code examples to show proper folder structure and file naming conventions
+
 ## [1.1.2] - 2024-12-30
 
 ### Added
