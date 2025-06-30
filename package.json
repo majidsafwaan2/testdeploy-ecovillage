@@ -1,7 +1,7 @@
 {
   "name": "conservation-chatbot",
-  "version": "1.0.3",
-  "description": "Interactive AI chatbot for endangered animals - Perfect for NGOs and conservation organizations",
+  "version": "1.1.0",
+  "description": "An interactive AI chatbot that creates meaningful connections between visitors and endangered animals. Perfect for conservation organizations, NGOs, and environmental education.",
   "main": "dist/conservation-chatbot.umd.js",
   "module": "dist/conservation-chatbot.es.js",
   "type": "module",
@@ -10,52 +10,76 @@
       "import": "./dist/conservation-chatbot.es.js",
       "require": "./dist/conservation-chatbot.umd.js"
     },
-    "./animals": "./src/animals/index.js",
-    "./styles": "./src/styles/index.js"
+    "./animals": {
+      "import": "./dist/animals.es.js",
+      "require": "./dist/animals.umd.js"
+    },
+    "./styles": {
+      "import": "./dist/styles.es.js",
+      "require": "./dist/styles.umd.js"
+    }
   },
   "files": [
-    "dist",
-    "src",
-    "examples"
+    "dist/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "NGO_SETUP_GUIDE.md"
   ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prepublishOnly": "npm run build && npm test",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "preview": "vite preview",
     "test": "node test/basic.test.js",
-    "docs": "echo \"Documentation is in README.md\""
+    "prepare": "npm run build"
   },
   "keywords": [
-    "chatbot",
     "conservation",
+    "chatbot",
+    "ai",
     "endangered-animals",
     "ngo",
-    "ai",
-    "gemini",
-    "javascript",
-    "npm-package"
+    "wildlife",
+    "marine-conservation",
+    "forest-conservation",
+    "climate-change",
+    "environmental-education",
+    "gemini-ai",
+    "google-ai",
+    "interactive",
+    "engagement",
+    "donations",
+    "volunteer",
+    "advocacy"
   ],
-  "author": "Safwaan",
+  "author": {
+    "name": "Conservation Chatbot Team",
+    "email": "support@conservation-chatbot.com",
+    "url": "https://github.com/majidsafwaan2/conservation-chatbot"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/majidsafwaan2/conservation-chatbot.git"
   },
-  "homepage": "https://github.com/majidsafwaan2/conservation-chatbot#readme",
   "bugs": {
     "url": "https://github.com/majidsafwaan2/conservation-chatbot/issues"
   },
+  "homepage": "https://github.com/majidsafwaan2/conservation-chatbot#readme",
   "dependencies": {
     "@google/generative-ai": "^0.21.0"
   },
   "devDependencies": {
     "gh-pages": "^6.1.1",
-    "vite": "^5.4.19"
+    "vite": "^5.0.0"
   },
   "peerDependencies": {},
   "engines": {
     "node": ">=14.0.0"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

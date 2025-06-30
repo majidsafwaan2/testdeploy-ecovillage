@@ -21,7 +21,7 @@ const chatbot = initConservationChatbot({
 
 ## Features
 
-- **9 Endangered Animals**: Tiger, Sea Turtle, Gorilla, Elephant, Polar Bear, Orangutan, Rhino, Panda, Vaquita
+- **25+ Endangered Animals**: Comprehensive collection organized by conservation focus areas
 - **Organization-Specific**: Tailors responses to your conservation focus
 - **Fully Customizable**: Colors, fonts, corner sharpness, animal selection
 - **Mobile Responsive**: Works perfectly on all devices
@@ -90,19 +90,53 @@ animals: 'Panda, Tiger, Elephant'  // Just specify what you want
 
 ### All Animals
 ```javascript
-// Don't specify animals to use all 9 animals
+// Don't specify animals to use all 25+ animals
 ```
 
-### Available Animals
+### Available Animals by Conservation Focus
+
+#### **WWF & Global Wildlife Conservation**
 - **Raja** (Tiger) - Endangered
-- **Shelly** (Sea Turtle) - Endangered  
-- **Kibo** (Gorilla) - Endangered
 - **Nuru** (Elephant) - Endangered
-- **Tula** (Polar Bear) - Vulnerable
-- **Bima** (Orangutan) - Critically Endangered
-- **Zola** (Rhino) - Critically Endangered
 - **Mei** (Panda) - Vulnerable
+- **Zola** (Rhino) - Critically Endangered
+
+#### **Sea Shepherd & Marine Conservation**
+- **Shelly** (Sea Turtle) - Endangered
 - **Luna** (Vaquita) - Critically Endangered
+- **Kai** (Blue Whale) - Endangered
+- **Marina** (Dolphin) - Least Concern
+- **Finn** (Shark) - Vulnerable
+
+#### **Rainforest Alliance & Forest Conservation**
+- **Kibo** (Gorilla) - Endangered
+- **Bima** (Orangutan) - Critically Endangered
+- **Luna** (Sloth) - Least Concern
+- **Shadow** (Jaguar) - Near Threatened
+- **Rio** (Toucan) - Least Concern
+
+#### **Polar Bears International & Climate Organizations**
+- **Tula** (Polar Bear) - Vulnerable
+- **Waddles** (Penguin) - Near Threatened
+- **Blubber** (Seal) - Least Concern
+
+#### **Bird Conservation Organizations**
+- **Freedom** (Eagle) - Least Concern
+- **Hoot** (Owl) - Vulnerable
+- **Pink** (Flamingo) - Least Concern
+
+#### **Primate Conservation Organizations**
+- **Zazu** (Lemur) - Endangered
+- **Koko** (Chimpanzee) - Endangered
+
+#### **Big Cat Conservation Organizations**
+- **Simba** (Lion) - Vulnerable
+- **Spot** (Leopard) - Vulnerable
+- **Swift** (Cheetah) - Vulnerable
+
+#### **Marine Mammal Conservation**
+- **River** (Otter) - Endangered
+- **Gentle** (Manatee) - Vulnerable
 
 ## Customization
 
@@ -182,8 +216,40 @@ initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Marine Organization',
   organizationType: 'marine',
-  animals: 'Sea Turtle, Vaquita',
+  animals: 'Sea Turtle, Vaquita, Blue Whale',
   styles: themePresets.ocean
+});
+```
+
+### Forest Conservation Organization
+```javascript
+import { initConservationChatbot, themePresets } from 'conservation-chatbot';
+
+initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Your Forest Organization',
+  organizationType: 'forest',
+  animals: 'Orangutan, Gorilla, Jaguar',
+  styles: themePresets.nature
+});
+```
+
+### Climate Organization
+```javascript
+import { initConservationChatbot } from 'conservation-chatbot';
+
+initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Your Climate Organization',
+  organizationType: 'climate',
+  animals: 'Polar Bear, Penguin, Seal',
+  styles: {
+    colors: {
+      primary: '#2E8B57',
+      secondary: '#3CB371',
+      accent: '#90EE90'
+    }
+  }
 });
 ```
 
@@ -232,7 +298,7 @@ chatbot.updateStyles({
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Conservation Site</title>
+    <title>Our Conservation Site</title>
 </head>
 <body>
     <h1>Welcome to Our Conservation Organization</h1>
@@ -251,14 +317,14 @@ chatbot.updateStyles({
 </html>
 ```
 
-### React
+### React Component
 ```jsx
 import { useEffect } from 'react';
 import { initConservationChatbot } from 'conservation-chatbot';
 
 function ConservationPage() {
   useEffect(() => {
-    initConservationChatbot({
+    const chatbot = initConservationChatbot({
       apiKey: process.env.REACT_APP_GEMINI_API_KEY,
       organization: 'Your Organization',
       organizationType: 'marine',
@@ -270,64 +336,64 @@ function ConservationPage() {
 }
 ```
 
-## Security
+### WordPress
+```php
+// Add to your theme's footer.php or via plugin
+wp_enqueue_script('conservation-chatbot', 'path/to/conservation-chatbot.js');
 
-### Development
-```javascript
-apiKey: 'AIzaSy...' // Direct API key (OK for development)
+// In your template
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize chatbot
+    initConservationChatbot({
+        apiKey: '<?php echo get_option("gemini_api_key"); ?>',
+        organization: '<?php echo get_bloginfo("name"); ?>',
+        organizationType: 'wildlife',
+        animals: 'Tiger, Panda'
+    });
+});
+</script>
 ```
 
-### Production
-```javascript
-apiKey: process.env.GEMINI_API_KEY // Environment variable (recommended)
-```
+## API Reference
 
-## Prerequisites
+**[Complete API Documentation](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/API.md)**
 
-1. **Gemini API Key**: Get one from [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. **Node.js**: For npm installation
-3. **Modern Browser**: Supports ES6 modules
+## Customization Guide
 
-## Troubleshooting
+**[Complete Customization Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/CUSTOMIZATION.md)**
 
-### Common Issues
+## Security Best Practices
 
-1. **Chatbot doesn't appear**:
-   - Check browser console for errors
-   - Verify API key is correct
-   - Ensure animals are specified correctly
+1. **Never expose your API key in client-side code**
+2. **Use environment variables** for API keys
+3. **Implement rate limiting** on your server
+4. **Validate user inputs** before sending to AI
+5. **Monitor API usage** and costs
 
-2. **API errors**:
-   - Check your Gemini API key
-   - Verify you have API quota
-   - Check network connectivity
+## Production Setup
 
-3. **Styling not working**:
-   - Check CSS syntax
-   - Verify style object structure
-   - Try theme presets first
+1. **Get a Gemini API key** from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. **Install the library**: `npm install conservation-chatbot`
+3. **Initialize with your organization** details
+4. **Customize styling** to match your brand
+5. **Test thoroughly** before going live
+6. **Monitor performance** and user engagement
 
-## Documentation
+## Support
 
-- **[Complete NGO Setup Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/NGO_SETUP_GUIDE.md)** - Detailed setup for conservation organizations
-- **[API Reference](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/API.md)** - Full API documentation
-- **[Customization Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/CUSTOMIZATION.md)** - Advanced styling options
-- **[Examples](https://github.com/majidsafwaan2/conservation-chatbot/tree/main/examples)** - Working examples and demos
+- **[GitHub Issues](https://github.com/majidsafwaan2/conservation-chatbot/issues)**
+- **[Documentation](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/README.md)**
+- **[NGO Setup Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/NGO_SETUP_GUIDE.md)**
 
 ## Contributing
 
-We welcome contributions! Please see our [Contributing Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/CONTRIBUTING.md) for details.
+**[Contributing Guidelines](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/CONTRIBUTING.md)**
 
 ## License
 
 MIT License - see [LICENSE](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/LICENSE) file for details.
 
-## Acknowledgments
-
-- Built for conservation organizations worldwide
-- Powered by Google Gemini AI
-- Inspired by endangered animals and their stories
-
 ---
 
-**Ready to help endangered animals?** [Get started with the NGO Setup Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/NGO_SETUP_GUIDE.md)
+**Transform your conservation website with meaningful animal connections. Start with just 3 lines of code!**

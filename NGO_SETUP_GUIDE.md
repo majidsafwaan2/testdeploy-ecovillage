@@ -55,20 +55,54 @@ animals: 'Panda, Tiger, Elephant'
 
 ### Option 2: All Animals
 ```javascript
-// Don't specify animals to use all 9 animals
+// Don't specify animals to use all 25+ animals
 animals: undefined // or omit this line
 ```
 
-### Available Animals
+### Available Animals by Conservation Focus
+
+#### **WWF & Global Wildlife Conservation**
 - **Raja** (Tiger) - Endangered
-- **Shelly** (Sea Turtle) - Endangered  
-- **Kibo** (Gorilla) - Endangered
 - **Nuru** (Elephant) - Endangered
-- **Tula** (Polar Bear) - Vulnerable
-- **Bima** (Orangutan) - Critically Endangered
-- **Zola** (Rhino) - Critically Endangered
 - **Mei** (Panda) - Vulnerable
+- **Zola** (Rhino) - Critically Endangered
+
+#### **Sea Shepherd & Marine Conservation**
+- **Shelly** (Sea Turtle) - Endangered
 - **Luna** (Vaquita) - Critically Endangered
+- **Kai** (Blue Whale) - Endangered
+- **Marina** (Dolphin) - Least Concern
+- **Finn** (Shark) - Vulnerable
+
+#### **Rainforest Alliance & Forest Conservation**
+- **Kibo** (Gorilla) - Endangered
+- **Bima** (Orangutan) - Critically Endangered
+- **Luna** (Sloth) - Least Concern
+- **Shadow** (Jaguar) - Near Threatened
+- **Rio** (Toucan) - Least Concern
+
+#### **Polar Bears International & Climate Organizations**
+- **Tula** (Polar Bear) - Vulnerable
+- **Waddles** (Penguin) - Near Threatened
+- **Blubber** (Seal) - Least Concern
+
+#### **Bird Conservation Organizations**
+- **Freedom** (Eagle) - Least Concern
+- **Hoot** (Owl) - Vulnerable
+- **Pink** (Flamingo) - Least Concern
+
+#### **Primate Conservation Organizations**
+- **Zazu** (Lemur) - Endangered
+- **Koko** (Chimpanzee) - Endangered
+
+#### **Big Cat Conservation Organizations**
+- **Simba** (Lion) - Vulnerable
+- **Spot** (Leopard) - Vulnerable
+- **Swift** (Cheetah) - Vulnerable
+
+#### **Marine Mammal Conservation**
+- **River** (Otter) - Endangered
+- **Gentle** (Manatee) - Vulnerable
 
 ## Organization Types
 
@@ -78,91 +112,34 @@ The chatbot will tailor responses based on your organization type:
 - Focuses on wildlife conservation
 - Anti-poaching efforts
 - Habitat protection
-- Wildlife threats
+- Species recovery programs
 
 ### `marine`
 - Ocean conservation
 - Marine life protection
-- Plastic pollution
-- Marine ecosystems
+- Plastic pollution awareness
+- Sustainable fishing
 
 ### `forest`
 - Forest conservation
-- Deforestation issues
+- Deforestation prevention
 - Biodiversity protection
-- Rainforest preservation
+- Sustainable forestry
 
 ### `climate`
-- Climate change impacts
-- Carbon emissions
+- Climate change awareness
+- Carbon emissions reduction
 - Environmental activism
-- Renewable energy
+- Renewable energy advocacy
 
 ### `general`
 - General environmental conservation
-- Sustainability
-- How people can help
+- Mixed conservation efforts
+- Educational outreach
 
-## Customization Options
+## Organization-Specific Examples
 
-### 1. Colors
-```javascript
-const chatbot = initConservationChatbot({
-  apiKey: 'your-api-key',
-  organization: 'Your Org',
-  styles: {
-    colors: {
-      primary: '#2d5016',      // Main color (header, buttons)
-      secondary: '#4a7c59',    // Secondary color (prompts)
-      accent: '#8bc34a',       // Accent color (heart hover)
-      background: 'rgba(255, 255, 255, 0.2)', // Chat background
-      text: '#333',            // Text color
-      textLight: 'white'       // Light text color
-    }
-  }
-});
-```
-
-### 2. Fonts
-```javascript
-styles: {
-  fonts: {
-    family: 'Georgia, serif', // Font family
-    size: {
-      small: '13px',         // Small text
-      medium: '14px',        // Medium text
-      large: '16px'          // Large text
-    }
-  }
-}
-```
-
-### 3. Corner Sharpness (Border Radius)
-```javascript
-styles: {
-  borderRadius: {
-    small: '6px',           // Small radius
-    medium: '12px',         // Medium radius
-    large: '18px',          // Large radius
-    round: '50%'            // Round elements
-  }
-}
-```
-
-### 4. Pre-built Themes
-```javascript
-import { themePresets } from 'conservation-chatbot';
-
-const chatbot = initConservationChatbot({
-  apiKey: 'your-api-key',
-  organization: 'Your Org',
-  styles: themePresets.nature  // or 'dark', 'light', 'ocean'
-});
-```
-
-## Complete Examples
-
-### Example 1: Wildlife Organization
+### Example 1: Wildlife Conservation NGO
 ```javascript
 import { initConservationChatbot } from 'conservation-chatbot';
 
@@ -187,33 +164,33 @@ const chatbot = initConservationChatbot({
 });
 ```
 
-### Example 2: Marine Organization
+### Example 2: Marine Conservation Organization
 ```javascript
-import { initConservationChatbot } from 'conservation-chatbot';
+import { initConservationChatbot, themePresets } from 'conservation-chatbot';
 
 const chatbot = initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Marine Organization',
   organizationType: 'marine',
-  animals: 'Sea Turtle, Vaquita',
+  animals: 'Sea Turtle, Vaquita, Blue Whale',
   styles: themePresets.ocean
 });
 ```
 
-### Example 3: Forest Organization
+### Example 3: Forest Conservation Organization
 ```javascript
-import { initConservationChatbot } from 'conservation-chatbot';
+import { initConservationChatbot, themePresets } from 'conservation-chatbot';
 
 const chatbot = initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Forest Organization',
   organizationType: 'forest',
-  animals: 'Orangutan, Gorilla',
+  animals: 'Orangutan, Gorilla, Jaguar',
   styles: themePresets.nature
 });
 ```
 
-### Example 4: Climate Organization
+### Example 4: Climate Change Organization
 ```javascript
 import { initConservationChatbot } from 'conservation-chatbot';
 
@@ -221,7 +198,7 @@ const chatbot = initConservationChatbot({
   apiKey: 'your-gemini-api-key',
   organization: 'Your Climate Organization',
   organizationType: 'climate',
-  animals: 'Polar Bear, Elephant',
+  animals: 'Polar Bear, Penguin, Seal',
   styles: {
     colors: {
       primary: '#2E8B57',
@@ -229,6 +206,76 @@ const chatbot = initConservationChatbot({
       accent: '#90EE90'
     }
   }
+});
+```
+
+### Example 5: Bird Conservation Organization
+```javascript
+import { initConservationChatbot } from 'conservation-chatbot';
+
+const chatbot = initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Your Bird Conservation Organization',
+  organizationType: 'wildlife',
+  animals: 'Eagle, Owl, Flamingo',
+  styles: {
+    colors: {
+      primary: '#8B4513',
+      secondary: '#DAA520',
+      accent: '#FFD700'
+    }
+  }
+});
+```
+
+### Example 6: Primate Conservation Organization
+```javascript
+import { initConservationChatbot } from 'conservation-chatbot';
+
+const chatbot = initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Your Primate Conservation Organization',
+  organizationType: 'forest',
+  animals: 'Gorilla, Orangutan, Lemur, Chimpanzee',
+  styles: {
+    colors: {
+      primary: '#228B22',
+      secondary: '#32CD32',
+      accent: '#90EE90'
+    }
+  }
+});
+```
+
+### Example 7: Big Cat Conservation Organization
+```javascript
+import { initConservationChatbot } from 'conservation-chatbot';
+
+const chatbot = initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Your Big Cat Conservation Organization',
+  organizationType: 'wildlife',
+  animals: 'Tiger, Lion, Leopard, Cheetah',
+  styles: {
+    colors: {
+      primary: '#FF8C00',
+      secondary: '#FFA500',
+      accent: '#FFD700'
+    }
+  }
+});
+```
+
+### Example 8: Marine Mammal Conservation Organization
+```javascript
+import { initConservationChatbot, themePresets } from 'conservation-chatbot';
+
+const chatbot = initConservationChatbot({
+  apiKey: 'your-gemini-api-key',
+  organization: 'Your Marine Mammal Organization',
+  organizationType: 'marine',
+  animals: 'Blue Whale, Dolphin, Sea Otter, Manatee',
+  styles: themePresets.ocean
 });
 ```
 
@@ -329,13 +376,39 @@ wp_enqueue_script('conservation-chatbot', 'path/to/conservation-chatbot.js');
 // In your template
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize chatbot
     initConservationChatbot({
         apiKey: '<?php echo get_option("gemini_api_key"); ?>',
         organization: '<?php echo get_bloginfo("name"); ?>',
         organizationType: 'wildlife',
-        animals: 'Panda, Tiger'
+        animals: 'Tiger, Panda'
     });
 });
+</script>
+```
+
+### Vue.js Component
+```vue
+<template>
+  <div>
+    <h1>Conservation Page</h1>
+  </div>
+</template>
+
+<script>
+import { initConservationChatbot } from 'conservation-chatbot';
+
+export default {
+  name: 'ConservationPage',
+  mounted() {
+    initConservationChatbot({
+      apiKey: process.env.VUE_APP_GEMINI_API_KEY,
+      organization: 'Your Organization',
+      organizationType: 'forest',
+      animals: 'Orangutan, Gorilla'
+    });
+  }
+}
 </script>
 ```
 
@@ -343,25 +416,55 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ### Development
 ```javascript
-// OK for development
-const chatbot = initConservationChatbot({
-  apiKey: 'AIzaSy...' // Direct API key
-});
+apiKey: 'AIzaSy...' // Direct API key (OK for development)
 ```
 
 ### Production
 ```javascript
-// Better for production - use environment variables
-const chatbot = initConservationChatbot({
-  apiKey: process.env.GEMINI_API_KEY // Environment variable
+apiKey: process.env.GEMINI_API_KEY // Environment variable (recommended)
+```
+
+### Server-Side Proxy (Most Secure)
+```javascript
+// Frontend
+apiKey: '/api/chat' // Proxy endpoint
+
+// Backend (Node.js example)
+app.post('/api/chat', async (req, res) => {
+  const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent', {
+    headers: {
+      'Authorization': `Bearer ${process.env.GEMINI_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)
+  });
+  res.json(await response.json());
 });
 ```
 
-### Backend Proxy (Most Secure)
+## Performance Optimization
+
+### Lazy Loading
 ```javascript
-// Create a backend endpoint that handles API calls
-// Frontend sends requests to your server
-// Server makes API calls with your key
+// Load chatbot only when needed
+document.addEventListener('scroll', function() {
+  if (window.scrollY > 500 && !window.chatbotLoaded) {
+    import('conservation-chatbot').then(({ initConservationChatbot }) => {
+      initConservationChatbot(config);
+      window.chatbotLoaded = true;
+    });
+  }
+});
+```
+
+### Conditional Loading
+```javascript
+// Only load on specific pages
+if (window.location.pathname.includes('/conservation')) {
+  import('conservation-chatbot').then(({ initConservationChatbot }) => {
+    initConservationChatbot(config);
+  });
+}
 ```
 
 ## Troubleshooting
@@ -383,25 +486,70 @@ const chatbot = initConservationChatbot({
    - Verify style object structure
    - Try theme presets first
 
-### Support
-- Check the [main README](../README.md) for more details
-- Create an issue on GitHub
-- Contact support at support@conservation-chatbot.com
+4. **Animals not showing**:
+   - Check animal names match exactly
+   - Verify animal IDs are correct
+   - Check for typos in animal selection
 
-## Success!
+### Debug Mode
+```javascript
+const chatbot = initConservationChatbot({
+  apiKey: 'your-key',
+  organization: 'Your Org',
+  animals: 'Tiger, Panda',
+  options: {
+    debug: true // Enable debug logging
+  }
+});
+```
 
-Once set up, your visitors will see:
-- A floating chat button in the bottom-right corner
-- Animals that represent your organization's mission
-- Responses tailored to your conservation focus
-- Calls-to-action for your organization
+## Monitoring & Analytics
 
-The chatbot will automatically:
-- Mention your organization name
-- Focus on your conservation type
-- Encourage visitors to support your mission
-- Provide educational content about endangered animals
+### Track Engagement
+```javascript
+const chatbot = initConservationChatbot({
+  apiKey: 'your-key',
+  organization: 'Your Org',
+  animals: 'Tiger, Panda',
+  options: {
+    onMessage: (message) => {
+      // Track user interactions
+      analytics.track('chatbot_message', {
+        animal: message.animal,
+        message: message.text
+      });
+    }
+  }
+});
+```
+
+### Monitor Performance
+```javascript
+// Track chatbot performance
+const startTime = Date.now();
+const chatbot = initConservationChatbot(config);
+
+chatbot.onLoad = () => {
+  const loadTime = Date.now() - startTime;
+  analytics.track('chatbot_load_time', { loadTime });
+};
+```
+
+## Support & Resources
+
+- **[GitHub Issues](https://github.com/majidsafwaan2/conservation-chatbot/issues)** - Report bugs and request features
+- **[API Documentation](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/API.md)** - Complete API reference
+- **[Customization Guide](https://github.com/majidsafwaan2/conservation-chatbot/blob/main/docs/CUSTOMIZATION.md)** - Advanced styling options
+- **[Examples](https://github.com/majidsafwaan2/conservation-chatbot/tree/main/examples)** - Working examples and demos
+
+## Next Steps
+
+1. **Choose your animals** based on your conservation focus
+2. **Customize the styling** to match your brand
+3. **Test thoroughly** on your website
+4. **Monitor engagement** and adjust as needed
+5. **Share your success** with the conservation community
 
 ---
 
-**Need help?** Check the [main documentation](../README.md) or create an issue on GitHub. 
+**Ready to make a difference? Start connecting visitors with endangered animals today!** 
