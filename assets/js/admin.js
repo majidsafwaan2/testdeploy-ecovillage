@@ -6,11 +6,11 @@
 jQuery(document).ready(function($) {
     
     // Initialize color pickers
-    $('.color-picker').wpColorPicker();
+        $('.color-picker').wpColorPicker();
     
     // Tab functionality
     $('.nav-tab').click(function(e) {
-        e.preventDefault();
+            e.preventDefault();
         $('.nav-tab').removeClass('nav-tab-active');
         $(this).addClass('nav-tab-active');
         $('.tab-content').hide();
@@ -91,7 +91,7 @@ jQuery(document).ready(function($) {
         if (apiKeyValue) {
             apiKeyField.attr('type', 'text');
             $('#toggle_api_key').text('Hide');
-        } else {
+                } else {
             apiKeyField.attr('type', 'password');
             $('#toggle_api_key').text('Show');
         }

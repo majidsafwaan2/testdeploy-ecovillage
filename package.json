@@ -1,85 +1,29 @@
 {
-  "name": "conservation-chatbot",
-  "version": "1.1.5",
-  "description": "An interactive AI chatbot that creates meaningful connections between visitors and endangered animals. Perfect for conservation organizations, NGOs, and environmental education.",
-  "main": "dist/conservation-chatbot.umd.js",
-  "module": "dist/conservation-chatbot.es.js",
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/conservation-chatbot.es.js",
-      "require": "./dist/conservation-chatbot.umd.js"
-    },
-    "./animals": {
-      "import": "./dist/animals.es.js",
-      "require": "./dist/animals.umd.js"
-    },
-    "./styles": {
-      "import": "./dist/styles.es.js",
-      "require": "./dist/styles.umd.js"
-    }
-  },
-  "files": [
-    "dist/",
-    "README.md",
-    "LICENSE",
-    "CHANGELOG.md",
-    "NGO_SETUP_GUIDE.md"
-  ],
+  "name": "jk-community-farm",
+  "version": "1.0.0",
+  "description": "JK Community Farm - A 501(c)(3) nonprofit organization dedicated to providing fresh, organic produce to families in need",
+  "main": "index.html",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "node test/basic.test.js",
-    "prepare": "npm run build"
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx serve .",
+    "deploy": "vercel --prod"
   },
   "keywords": [
-    "conservation",
-    "chatbot",
-    "ai",
-    "endangered-animals",
-    "ngo",
-    "wildlife",
-    "marine-conservation",
-    "forest-conservation",
-    "climate-change",
-    "environmental-education",
-    "gemini-ai",
-    "google-ai",
-    "interactive",
-    "engagement",
-    "donations",
+    "community-farm",
+    "sustainable-agriculture",
+    "nonprofit",
     "volunteer",
-    "advocacy"
+    "education",
+    "food-security"
   ],
-  "author": {
-    "name": "Conservation Chatbot Team",
-    "email": "support@conservation-chatbot.com",
-    "url": "https://github.com/majidsafwaan2/conservation-chatbot"
-  },
+  "author": "JK Community Farm",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/majidsafwaan2/conservation-chatbot.git"
-  },
-  "bugs": {
-    "url": "https://github.com/majidsafwaan2/conservation-chatbot/issues"
-  },
-  "homepage": "https://github.com/majidsafwaan2/conservation-chatbot#readme",
-  "dependencies": {
-    "@google/generative-ai": "^0.21.0"
-  },
   "devDependencies": {
-    "gh-pages": "^6.1.1",
-    "vite": "^5.0.0"
+    "serve": "^14.2.1"
   },
-  "peerDependencies": {},
+  "dependencies": {},
   "engines": {
     "node": ">=14.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }

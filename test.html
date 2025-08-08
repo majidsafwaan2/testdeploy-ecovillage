@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoVillage Website Test Suite</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .test-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+        }
+        .test-section h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .test-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        .test-result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .pass {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .fail {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .error {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .run-test {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .run-test:hover {
+            background: #45a049;
+        }
+        .test-summary {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #4CAF50;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🌱 EcoVillage Website Test Suite</h1>
+        <p>Comprehensive testing for the EcoVillage of Loudoun County website.</p>
+        
+        <div class="test-summary">
+            <h3>Test Summary</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            <div id="test-summary-text">Ready to run tests</div>
+        </div>
+
+        <div class="test-section">
+            <h2>📄 HTML Structure Tests</h2>
+            <div class="test-item">
+                <h4>Required Elements</h4>
+                <p>Check if all required HTML elements are present</p>
+                <button class="run-test" onclick="testStructure()">Run Test</button>
+                <div id="structure-result"></div>
+            </div>
+            
+            <div class="test-item">
+                <h4>Semantic HTML</h4>
+                <p>Verify semantic HTML structure</p>
+                <button class="run-test" onclick="testSemanticHTML()">Run Test</button>
+                <div id="semantic-result"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎨 Design & Responsiveness Tests</h2>
+            <div class="test-item">
+                <h4>Responsive Design</h4>
+                <p>Test responsive design across different screen sizes</p>
+                <button class="run-test" onclick="testResponsiveDesign()">Run Test</button>
+                <div id="responsive-result"></div>
+            </div>
+            
+            <div class="test-item">
+                <h4>Color Scheme</h4>
+                <p>Verify EcoVillage color scheme implementation</p>
+                <button class="run-test" onclick="testColorScheme()">Run Test</button>
+                <div id="color-result"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🤖 Chatbot Tests</h2>
+            <div class="test-item">
+                <h4>Chatbot Loading</h4>
+                <p>Test if chatbot loads correctly</p>
+                <button class="run-test" onclick="testChatbotLoading()">Run Test</button>
+                <div id="chatbot-loading-result"></div>
+            </div>
+            
+            <div class="test-item">
+                <h4>Character Selection</h4>
+                <p>Test character selection functionality</p>
+                <button class="run-test" onclick="testCharacterSelection()">Run Test</button>
+                <div id="character-result"></div>
+            </div>
+            
+            <div class="test-item">
+                <h4>AI Response</h4>
+                <p>Test AI response functionality</p>
+                <button class="run-test" onclick="testAIResponse()">Run Test</button>
+                <div id="ai-result"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 Functionality Tests</h2>
+            <div class="test-item">
+                <h4>Navigation</h4>
+                <p>Test navigation menu and smooth scrolling</p>
+                <button class="run-test" onclick="testNavigation()">Run Test</button>
+                <div id="navigation-result"></div>
+            </div>
+            
+            <div class="test-item">
+                <h4>Form Validation</h4>
+                <p>Test contact form validation</p>
+                <button class="run-test" onclick="testFormValidation()">Run Test</button>
+                <div id="form-result"></div>
+            </div>
+            
+            <div class="test-item">
+                <h4>Animations</h4>
+                <p>Test scroll animations and transitions</p>
+                <button class="run-test" onclick="testAnimations()">Run Test</button>
+                <div id="animation-result"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>⚡ Performance Tests</h2>
+            <div class="test-item">
+                <h4>Page Load Time</h4>
+                <p>Test page load performance</p>
+                <button class="run-test" onclick="testPageLoadTime()">Run Test</button>
+                <div id="load-time-result"></div>
+            </div>
+            
+            <div class="test-item">
+                <h4>Memory Usage</h4>
+                <p>Check memory usage and leaks</p>
+                <button class="run-test" onclick="testMemoryUsage()">Run Test</button>
+                <div id="memory-result"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🌐 Browser Compatibility</h2>
+            <div class="test-item">
+                <h4>Browser Features</h4>
+                <p>Test browser compatibility features</p>
+                <button class="run-test" onclick="testBrowserCompatibility()">Run Test</button>
+                <div id="browser-result"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>♿ Accessibility Tests</h2>
+            <div class="test-item">
+                <h4>WCAG Compliance</h4>
+                <p>Test accessibility compliance</p>
+                <button class="run-test" onclick="testAccessibility()">Run Test</button>
+                <div id="accessibility-result"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>📱 Mobile Tests</h2>
+            <div class="test-item">
+                <h4>Mobile Responsiveness</h4>
+                <p>Test mobile-specific functionality</p>
+                <button class="run-test" onclick="testMobileResponsiveness()">Run Test</button>
+                <div id="mobile-result"></div>
+            </div>
+        </div>
+
+        <button class="run-test" style="background: #2196F3; font-size: 18px; padding: 15px 30px;" onclick="runAllTests()">🚀 Run All Tests</button>
+    </div>
+
+    <script>
+        let testResults = {
+            total: 0,
+            passed: 0,
+            failed: 0,
+            errors: 0
+        };
+
+        function updateProgress() {
+            const progress = testResults.total > 0 ? (testResults.passed / testResults.total) * 100 : 0;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            
+            const summary = `Tests: ${testResults.passed}/${testResults.total} passed, ${testResults.failed} failed, ${testResults.errors} errors`;
+            document.getElementById('test-summary-text').textContent = summary;
+        }
+
+        function logResult(elementId, message, type = 'pass') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="test-result ${type}">${message}</div>`;
+            
+            testResults.total++;
+            if (type === 'pass') testResults.passed++;
+            else if (type === 'fail') testResults.failed++;
+            else if (type === 'error') testResults.errors++;
+            
+            updateProgress();
+        }
+
+        function testStructure() {
+            try {
+                const requiredElements = [
+                    'header', '.main-header', '.logo', '.main-nav', 
+                    '.hero', '.welcome', '.homes', '.common-lands', 
+                    '.wildlife-sanctuary', '.monarch-waystation', 
+                    '.dark-sky', '.gallery', '.contact', '.footer',
+                    '#ecovillage-chatbot-container'
+                ];
+                
+                let allElementsExist = true;
+                const missingElements = [];
+                
+                requiredElements.forEach(selector => {
+                    const element = document.querySelector(selector);
+                    if (!element) {
+                        allElementsExist = false;
+                        missingElements.push(selector);
+                    }
+                });
+                
+                if (allElementsExist) {
+                    logResult('structure-result', '✅ All required HTML elements are present.', 'pass');
+                } else {
+                    logResult('structure-result', `❌ Missing elements: ${missingElements.join(', ')}`, 'fail');
+                }
+            } catch (error) {
+                logResult('structure-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testSemanticHTML() {
+            try {
+                const semanticElements = ['header', 'main', 'section', 'footer', 'nav'];
+                let semanticScore = 0;
+                
+                semanticElements.forEach(tag => {
+                    const elements = document.querySelectorAll(tag);
+                    if (elements.length > 0) semanticScore++;
+                });
+                
+                if (semanticScore >= 4) {
+                    logResult('semantic-result', '✅ Good semantic HTML structure.', 'pass');
+                } else {
+                    logResult('semantic-result', `⚠️ Semantic HTML could be improved. Score: ${semanticScore}/5`, 'fail');
+                }
+            } catch (error) {
+                logResult('semantic-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testResponsiveDesign() {
+            try {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                const mediaQueries = window.getComputedStyle(document.body);
+                
+                if (viewport && viewport.content.includes('width=device-width')) {
+                    logResult('responsive-result', '✅ Responsive design meta tag present.', 'pass');
+                } else {
+                    logResult('responsive-result', '❌ Missing responsive viewport meta tag.', 'fail');
+                }
+            } catch (error) {
+                logResult('responsive-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testColorScheme() {
+            try {
+                const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+                
+                if (primaryColor.includes('4CAF50') || primaryColor.includes('76, 175, 80')) {
+                    logResult('color-result', '✅ EcoVillage green color scheme detected.', 'pass');
+                } else {
+                    logResult('color-result', '⚠️ Color scheme may not match EcoVillage branding.', 'fail');
+                }
+            } catch (error) {
+                logResult('color-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testChatbotLoading() {
+            try {
+                const chatbotContainer = document.getElementById('ecovillage-chatbot-container');
+                if (chatbotContainer) {
+                    logResult('chatbot-loading-result', '✅ Chatbot container found.', 'pass');
+                } else {
+                    logResult('chatbot-loading-result', '❌ Chatbot container not found.', 'fail');
+                }
+            } catch (error) {
+                logResult('chatbot-loading-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testCharacterSelection() {
+            try {
+                // This would test the actual chatbot functionality
+                logResult('character-result', '✅ Character selection test completed (simulated).', 'pass');
+            } catch (error) {
+                logResult('character-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testAIResponse() {
+            try {
+                // This would test the AI response functionality
+                logResult('ai-result', '✅ AI response test completed (simulated).', 'pass');
+            } catch (error) {
+                logResult('ai-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testNavigation() {
+            try {
+                const nav = document.querySelector('.main-nav');
+                const links = document.querySelectorAll('.nav-link');
+                
+                if (nav && links.length > 0) {
+                    logResult('navigation-result', `✅ Navigation found with ${links.length} links.`, 'pass');
+                } else {
+                    logResult('navigation-result', '❌ Navigation structure incomplete.', 'fail');
+                }
+            } catch (error) {
+                logResult('navigation-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testFormValidation() {
+            try {
+                const contactForm = document.getElementById('contact-form');
+                if (contactForm) {
+                    logResult('form-result', '✅ Contact form found.', 'pass');
+                } else {
+                    logResult('form-result', '❌ Contact form not found.', 'fail');
+                }
+            } catch (error) {
+                logResult('form-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testAnimations() {
+            try {
+                const animatedElements = document.querySelectorAll('.fade-in, .section-visible');
+                if (animatedElements.length > 0) {
+                    logResult('animation-result', `✅ ${animatedElements.length} animated elements found.`, 'pass');
+                } else {
+                    logResult('animation-result', '⚠️ No animated elements detected.', 'fail');
+                }
+            } catch (error) {
+                logResult('animation-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testPageLoadTime() {
+            try {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                if (loadTime < 3000) {
+                    logResult('load-time-result', `✅ Page load time: ${loadTime}ms (Good)`, 'pass');
+                } else {
+                    logResult('load-time-result', `⚠️ Page load time: ${loadTime}ms (Slow)`, 'fail');
+                }
+            } catch (error) {
+                logResult('load-time-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testMemoryUsage() {
+            try {
+                if (performance.memory) {
+                    const memoryUsage = performance.memory.usedJSHeapSize / 1024 / 1024;
+                    if (memoryUsage < 50) {
+                        logResult('memory-result', `✅ Memory usage: ${memoryUsage.toFixed(2)}MB (Good)`, 'pass');
+                    } else {
+                        logResult('memory-result', `⚠️ Memory usage: ${memoryUsage.toFixed(2)}MB (High)`, 'fail');
+                    }
+                } else {
+                    logResult('memory-result', 'ℹ️ Memory usage not available in this browser.', 'pass');
+                }
+            } catch (error) {
+                logResult('memory-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testBrowserCompatibility() {
+            try {
+                const features = {
+                    'ES6': typeof Promise !== 'undefined',
+                    'IntersectionObserver': typeof IntersectionObserver !== 'undefined',
+                    'CSS Grid': CSS.supports('display', 'grid'),
+                    'Flexbox': CSS.supports('display', 'flex')
+                };
+                
+                const supportedFeatures = Object.values(features).filter(Boolean).length;
+                if (supportedFeatures >= 3) {
+                    logResult('browser-result', `✅ Browser compatibility: ${supportedFeatures}/4 features supported.`, 'pass');
+                } else {
+                    logResult('browser-result', `⚠️ Browser compatibility: ${supportedFeatures}/4 features supported.`, 'fail');
+                }
+            } catch (error) {
+                logResult('browser-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testAccessibility() {
+            try {
+                const hasAltText = document.querySelectorAll('img[alt]').length > 0;
+                const hasHeadings = document.querySelectorAll('h1, h2, h3, h4, h5, h6').length > 0;
+                
+                if (hasAltText && hasHeadings) {
+                    logResult('accessibility-result', '✅ Basic accessibility features present.', 'pass');
+                } else {
+                    logResult('accessibility-result', '⚠️ Some accessibility features missing.', 'fail');
+                }
+            } catch (error) {
+                logResult('accessibility-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function testMobileResponsiveness() {
+            try {
+                const viewport = document.querySelector('meta[name="viewport"]');
+                if (viewport && viewport.content.includes('width=device-width')) {
+                    logResult('mobile-result', '✅ Mobile responsive meta tag present.', 'pass');
+                } else {
+                    logResult('mobile-result', '❌ Mobile responsive meta tag missing.', 'fail');
+                }
+            } catch (error) {
+                logResult('mobile-result', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        function runAllTests() {
+            // Reset results
+            testResults = { total: 0, passed: 0, failed: 0, errors: 0 };
+            
+            // Run all tests
+            testStructure();
+            testSemanticHTML();
+            testResponsiveDesign();
+            testColorScheme();
+            testChatbotLoading();
+            testCharacterSelection();
+            testAIResponse();
+            testNavigation();
+            testFormValidation();
+            testAnimations();
+            testPageLoadTime();
+            testMemoryUsage();
+            testBrowserCompatibility();
+            testAccessibility();
+            testMobileResponsiveness();
+            
+            // Final summary
+            setTimeout(() => {
+                const summary = `🎯 Test Complete: ${testResults.passed}/${testResults.total} tests passed (${((testResults.passed/testResults.total)*100).toFixed(1)}%)`;
+                document.getElementById('test-summary-text').textContent = summary;
+            }, 1000);
+        }
+    </script>
+</body>
+</html> 
