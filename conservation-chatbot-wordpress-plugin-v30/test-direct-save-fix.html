@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Save Animal Selection Fix Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .info { color: blue; }
+        .warning { color: orange; }
+        .test-step {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #007cba;
+            border-radius: 4px;
+        }
+        .code-block {
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        .form-preview {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Direct Save Animal Selection Fix Test</h1>
+    
+    <div class="test-section">
+        <h2>Problem Analysis</h2>
+        <p>The issue was that WordPress settings API was not processing unchecked checkboxes correctly. When no checkboxes are checked, the <code>selected_animals</code> field is not sent in the POST data, causing WordPress to ignore the animal selection entirely.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Direct Save Solution</h2>
+        <ul>
+            <li class="success">✅ Separate form for animal selection</li>
+            <li class="success">✅ Custom form handler that bypasses WordPress settings API</li>
+            <li class="success">✅ Direct database updates</li>
+            <li class="success">✅ Immediate success/error feedback</li>
+            <li class="success">✅ Comprehensive debug logging</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Technical Implementation</h2>
+        
+        <h3>Custom Form Handler:</h3>
+        <div class="code-block">
+public function handle_animal_selection_save() {
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['cc_animal_nonce'], 'cc_animal_selection')) {
+        wp_die('Security check failed');
+    }
+    
+    // Get current settings
+    $settings = get_option('cc_chatbot_settings', array());
+    
+    // Process animal selection
+    $selected_animals = array();
+    if (isset($_POST['selected_animals']) && is_array($_POST['selected_animals'])) {
+        $selected_animals = array_map('sanitize_text_field', $_POST['selected_animals']);
+    }
+    
+    // Update settings
+    $settings['selected_animals'] = $selected_animals;
+    
+    // Save to database
+    $result = update_option('cc_chatbot_settings', $settings);
+    
+    // Log for debugging
+    error_log('CC Animal Selection - Selected: ' . print_r($selected_animals, true));
+    error_log('CC Animal Selection - Save result: ' . ($result ? 'success' : 'failed'));
+    
+    // Redirect back with success/error message
+    $redirect_url = admin_url('admin.php?page=conservation-chatbot');
+    if ($result) {
+        $redirect_url .= '&animal_saved=1';
+    } else {
+        $redirect_url .= '&animal_error=1';
+    }
+    
+    wp_redirect($redirect_url);
+    exit;
+}
+        </div>
+
+        <h3>Separate Form:</h3>
+        <div class="code-block">
+&lt;form method="post" action="&lt;?php echo admin_url('admin-post.php'); ?>"&gt;
+    &lt;input type="hidden" name="action" value="cc_save_animal_selection" /&gt;
+    &lt;?php wp_nonce_field('cc_animal_selection', 'cc_animal_nonce'); ?&gt;
+    
+    &lt;h3&gt;Animal Selection (Direct Save)&lt;/h3&gt;
+    &lt;p&gt;This form saves animal selection directly to the database.&lt;/p&gt;
+    
+    &lt;!-- Animal checkboxes here --&gt;
+    
+    &lt;?php submit_button('Save Animal Selection', 'primary', 'save_animals'); ?&gt;
+&lt;/form&gt;
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Form Preview</h2>
+        <div class="form-preview">
+            <h3>Animal Selection (Direct Save)</h3>
+            <p>This form saves animal selection directly to the database, bypassing WordPress settings API.</p>
+            
+            <table class="form-table">
+                <tr>
+                    <th scope="row">Selected Animals</th>
+                    <td>
+                        <label style="display: block; margin-bottom: 5px;">
+                            <input type="checkbox" name="selected_animals[]" value="tiger" checked />
+                            Bengal Tiger
+                        </label>
+                        <label style="display: block; margin-bottom: 5px;">
+                            <input type="checkbox" name="selected_animals[]" value="elephant" checked />
+                            African Elephant
+                        </label>
+                        <label style="display: block; margin-bottom: 5px;">
+                            <input type="checkbox" name="selected_animals[]" value="panda" checked />
+                            Giant Panda
+                        </label>
+                        <span class="description">Select which animals to include in the chatbot</span>
+                    </td>
+                </tr>
+            </table>
+            
+            <button type="submit" class="button button-primary">Save Animal Selection</button>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Rigorous Test Plan</h2>
+        
+        <div class="test-step">
+            <h3>Test 1: Uncheck Elephant (Critical Test)</h3>
+            <ol>
+                <li>Go to Conservation Chatbot Settings</li>
+                <li>Scroll down to "Animal Selection (Direct Save)" section</li>
+                <li>Uncheck "African Elephant"</li>
+                <li>Click "Save Animal Selection" button</li>
+                <li><strong>Expected:</strong> Success message appears: "Animal selection saved successfully!"</li>
+                <li>Check browser console for debug messages</li>
+                <li>Refresh the page</li>
+                <li><strong>Expected:</strong> African Elephant remains unchecked</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 2: Uncheck All Animals</h3>
+            <ol>
+                <li>Uncheck Bengal Tiger</li>
+                <li>Uncheck African Elephant</li>
+                <li>Uncheck Giant Panda</li>
+                <li>Click "Save Animal Selection"</li>
+                <li><strong>Expected:</strong> Success message appears</li>
+                <li>Refresh the page</li>
+                <li><strong>Expected:</strong> All checkboxes remain unchecked</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 3: Check Some Animals</h3>
+            <ol>
+                <li>Check Bengal Tiger and Giant Panda</li>
+                <li>Leave African Elephant unchecked</li>
+                <li>Click "Save Animal Selection"</li>
+                <li><strong>Expected:</strong> Success message appears</li>
+                <li>Refresh the page</li>
+                <li><strong>Expected:</strong> Only Bengal Tiger and Giant Panda are checked</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 4: Frontend Verification</h3>
+            <ol>
+                <li>After saving animal selection changes</li>
+                <li>Go to the frontend website</li>
+                <li>Open the chatbot</li>
+                <li><strong>Expected:</strong> Only selected animals appear in the dropdown</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 5: Debug Log Verification</h3>
+            <ol>
+                <li>Enable WordPress debug logging</li>
+                <li>Make animal selection changes</li>
+                <li>Check debug.log for:
+                    <ul>
+                        <li><code>CC Animal Selection - Selected: Array(...)</code></li>
+                        <li><code>CC Animal Selection - Save result: success</code></li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 6: Error Handling</h3>
+            <ol>
+                <li>Try to submit form without nonce (if possible)</li>
+                <li><strong>Expected:</strong> Security error or proper handling</li>
+                <li>Check for error messages in debug log</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Expected Debug Messages</h2>
+        <ul>
+            <li><strong>When animals selected:</strong> <code>CC Animal Selection - Selected: Array([0] => tiger, [1] => elephant)</code></li>
+            <li><strong>When no animals selected:</strong> <code>CC Animal Selection - Selected: Array()</code></li>
+            <li><strong>Save result:</strong> <code>CC Animal Selection - Save result: success</code> or <code>failed</code></li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Key Advantages</h2>
+        <ul>
+            <li class="success">✅ Bypasses WordPress settings API completely</li>
+            <li class="success">✅ Direct database updates</li>
+            <li class="success">✅ Immediate feedback</li>
+            <li class="success">✅ Comprehensive logging</li>
+            <li class="success">✅ Separate form prevents conflicts</li>
+            <li class="success">✅ Security with nonce verification</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Version Information</h2>
+        <p><strong>Plugin Version:</strong> v27 (Direct Save Fix)</p>
+        <p><strong>Key Changes:</strong> Custom form handler for animal selection</p>
+        <p><strong>Approach:</strong> Bypasses WordPress settings API</p>
+        <p><strong>Test Status:</strong> Ready for rigorous testing</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Why This Will Work</h2>
+        <ul>
+            <li class="success">✅ Completely bypasses WordPress settings API issues</li>
+            <li class="success">✅ Direct database updates ensure changes are saved</li>
+            <li class="success">✅ Separate form prevents conflicts with other settings</li>
+            <li class="success">✅ Immediate feedback shows success/failure</li>
+            <li class="success">✅ Comprehensive logging for debugging</li>
+        </ul>
+    </div>
+
+    <script>
+        console.log('Direct save animal selection fix test page loaded');
+        
+        // Simulate the form submission
+        function simulateDirectSave() {
+            console.log('Simulating direct save form submission...');
+            console.log('Form would submit to admin-post.php with action=cc_save_animal_selection');
+            console.log('This bypasses WordPress settings API completely');
+            alert('Simulation complete. The direct save approach should work by bypassing WordPress settings API entirely.');
+        }
+    </script>
+</body>
+</html> 

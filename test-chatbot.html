@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Why Conservation Matters</h1>
+        <p>This is a demo website showcasing the Conservation Chatbot in action.</p>
+        <p>Wildlife conservation is essential for maintaining the delicate balance of our planet's ecosystems. Every species, from the majestic Bengal tiger to the humble honeybee, plays a vital role in sustaining the natural world.</p>
+        <p>Unfortunately, habitat loss, climate change, and poaching are pushing many animals to the brink of extinction. By supporting conservation efforts, we not only protect these incredible creatures but also ensure clean air, fresh water, and a healthy environment for all.</p>
+        <p>Together, we can make a difference—through education, advocacy, and direct action. Explore our site to learn more about endangered species, discover ways to get involved, and chat with our AI-powered animal chatbot below!</p>
+    </div>
+
+    <!-- Mock WordPress settings -->
+    <script>
+        window.cc_settings = {
+            api_key: 'test-key',
+            organization: 'Save the Elephants',
+            organization_type: 'wildlife',
+            animals: [
+                {
+                    name: 'Tiger',
+                    emoji: '🐯',
+                    story: 'I am a Bengal tiger, one of the most majestic predators in the world. I live in the forests of India and Bangladesh, where I play a crucial role in maintaining the ecosystem balance.',
+                    image: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=400'
+                },
+                {
+                    name: 'Elephant',
+                    emoji: '🐘',
+                    story: 'I am an African elephant, the largest land animal on Earth. I live in the savannas and forests of Africa, where I help maintain the landscape and provide water for other animals.',
+                    image: 'https://images.unsplash.com/photo-1557050543-4d5f2e07c5e9?w=400'
+                },
+                {
+                    name: 'Panda',
+                    emoji: '🐼',
+                    story: 'I am a giant panda, a symbol of peace and conservation. I live in the bamboo forests of China, where I help maintain the bamboo ecosystem.',
+                    image: 'https://images.unsplash.com/photo-1557050543-4d5f2e07c5e9?w=400'
+                }
+            ],
+            selected_animals: ['tiger', 'elephant', 'panda'],
+            customization: {
+                position: 'bottom-right',
+                colors: {
+                    primary: '#222',
+                    secondary: '#444',
+                    accent: '#222',
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    text: '#ffffff',
+                    text_light: '#ffffff'
+                }
+            }
+        };
+
+        // Mock jQuery
+        window.$ = {
+            ajax: function(options) {
+                console.log('Mock AJAX call:', options);
+                // Simulate AI response
+                setTimeout(function() {
+                    options.success({
+                        success: true,
+                        data: {
+                            response: "Hello! I'm a mock AI response. This is just a test to make sure the chatbot is working properly."
+                        }
+                    });
+                }, 1000);
+            }
+        };
+    </script>
+
+    <!-- Load the chatbot script -->
+    <script src="assets/js/chatbot.js"></script>
+</body>
+</html> 

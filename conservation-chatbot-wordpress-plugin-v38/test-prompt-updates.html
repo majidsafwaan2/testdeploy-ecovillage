@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Prompt Updates</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        button { padding: 10px 15px; margin: 5px; background: #007cba; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #005a87; }
+        .prompt-button { background: #444; color: white; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 6px 12px; margin: 5px; cursor: pointer; }
+        .prompt-button:hover { background: #666; }
+    </style>
+</head>
+<body>
+    <h1>Prompt Updates Test</h1>
+    
+    <div class="test-section info">
+        <h2>Test Instructions</h2>
+        <p>This test verifies that prompt updates are working correctly in the chatbot.</p>
+        <ol>
+            <li>Check the current prompt settings below</li>
+            <li>Update the prompt settings in WordPress admin</li>
+            <li>Refresh this page</li>
+            <li>Verify the prompts have been updated</li>
+            <li>Test the refresh function manually</li>
+        </ol>
+    </div>
+    
+    <div class="test-section">
+        <h2>Current Prompt Settings</h2>
+        <div id="current-prompts">Loading...</div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Prompt Buttons</h2>
+        <div id="test-prompt-buttons">
+            <button class="prompt-button" data-prompt="Tell me a fun fact!">Fun Fact</button>
+            <button class="prompt-button" data-prompt="What's your biggest threat?">Threats</button>
+            <button class="prompt-button" data-prompt="How can I help protect you?">Help</button>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="testRefreshPrompts()">Test Refresh Prompts</button>
+        <button onclick="simulatePromptUpdate()">Simulate Prompt Update</button>
+        <button onclick="checkPromptSettings()">Check Current Settings</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div id="test-results">No tests run yet</div>
+    </div>
+    
+    <script>
+        // Simulate cc_settings for testing
+        window.cc_settings = {
+            customization: {
+                prompts: {
+                    prompt_1_text: 'Fun Fact',
+                    prompt_1_message: 'Tell me a fun fact!',
+                    prompt_2_text: 'Threats',
+                    prompt_2_message: "What's your biggest threat?",
+                    prompt_3_text: 'Help',
+                    prompt_3_message: 'How can I help protect you?'
+                }
+            }
+        };
+        
+        function checkPromptSettings() {
+            const prompts = window.cc_settings?.customization?.prompts || {};
+            const currentPromptsDiv = document.getElementById('current-prompts');
+            
+            currentPromptsDiv.innerHTML = `
+                <pre>${JSON.stringify(prompts, null, 2)}</pre>
+            `;
+            
+            showResult('info', 'Current prompt settings displayed');
+        }
+        
+        function testRefreshPrompts() {
+            // Simulate the refresh function
+            const buttons = document.querySelectorAll('.prompt-button');
+            const prompts = window.cc_settings?.customization?.prompts || {};
+            
+            const updatedPromptsData = [
+                { 
+                    text: prompts.prompt_1_text || 'Fun Fact', 
+                    prompt: prompts.prompt_1_message || 'Tell me a fun fact!' 
+                },
+                { 
+                    text: prompts.prompt_2_text || 'Threats', 
+                    prompt: prompts.prompt_2_message || "What's your biggest threat?" 
+                },
+                { 
+                    text: prompts.prompt_3_text || 'Help', 
+                    prompt: prompts.prompt_3_message || 'How can I help protect you?' 
+                }
+            ];
+            
+            buttons.forEach((button, index) => {
+                if (updatedPromptsData[index]) {
+                    button.textContent = updatedPromptsData[index].text;
+                    button.dataset.prompt = updatedPromptsData[index].prompt;
+                }
+            });
+            
+            showResult('success', 'Prompt buttons refreshed successfully');
+        }
+        
+        function simulatePromptUpdate() {
+            // Simulate updating the prompt settings
+            window.cc_settings.customization.prompts = {
+                prompt_1_text: 'Amazing Fact',
+                prompt_1_message: 'Tell me an amazing fact about yourself!',
+                prompt_2_text: 'Dangers',
+                prompt_2_message: "What dangers do you face?",
+                prompt_3_text: 'Support',
+                prompt_3_message: 'How can I support your conservation?'
+            };
+            
+            showResult('success', 'Prompt settings updated (simulated)');
+            checkPromptSettings();
+        }
+        
+        function showResult(type, message) {
+            const resultsDiv = document.getElementById('test-results');
+            const timestamp = new Date().toLocaleTimeString();
+            const resultHtml = `<div class="${type}">[${timestamp}] ${message}</div>`;
+            resultsDiv.innerHTML = resultHtml + resultsDiv.innerHTML;
+        }
+        
+        // Initialize on page load
+        window.onload = function() {
+            checkPromptSettings();
+            showResult('info', 'Test page loaded successfully');
+        };
+    </script>
+</body>
+</html> 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Selection Fix Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+        .warning { color: orange; }
+        .test-step {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #007cba;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Animal Selection Fix Test</h1>
+    
+    <div class="test-section">
+        <h2>Problem Identified</h2>
+        <p>The issue was in the animal selection sanitization logic. When no checkboxes are checked, the <code>selected_animals</code> field is not sent in the POST data, so the sanitization function wasn't processing it correctly.</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Fix Applied</h2>
+        <ul>
+            <li class="success">✅ Added hidden field <code>animal_selection_submitted</code> to indicate form submission</li>
+            <li class="success">✅ Updated sanitization logic to handle empty animal selection properly</li>
+            <li class="success">✅ Added fallback to existing settings when form isn't submitted</li>
+            <li class="success">✅ Proper array validation and error handling</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Rigorous Test Plan</h2>
+        
+        <div class="test-step">
+            <h3>Test 1: Uncheck All Animals</h3>
+            <ol>
+                <li>Go to Conservation Chatbot Settings → General</li>
+                <li>Uncheck ALL animals (Bengal Tiger, African Elephant, Giant Panda)</li>
+                <li>Click "Save Changes"</li>
+                <li><strong>Expected:</strong> Settings save without errors</li>
+                <li>Refresh the page</li>
+                <li><strong>Expected:</strong> All checkboxes remain unchecked</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 2: Uncheck Some Animals</h3>
+            <ol>
+                <li>Check Bengal Tiger and African Elephant</li>
+                <li>Leave Giant Panda unchecked</li>
+                <li>Click "Save Changes"</li>
+                <li><strong>Expected:</strong> Settings save without errors</li>
+                <li>Refresh the page</li>
+                <li><strong>Expected:</strong> Only Bengal Tiger and African Elephant are checked</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 3: Frontend Verification</h3>
+            <ol>
+                <li>After saving animal selection changes</li>
+                <li>Go to the frontend website</li>
+                <li>Open the chatbot</li>
+                <li><strong>Expected:</strong> Only selected animals appear in the dropdown</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 4: Memory Test</h3>
+            <ol>
+                <li>Make multiple animal selection changes</li>
+                <li>Save after each change</li>
+                <li><strong>Expected:</strong> No memory errors occur</li>
+            </ol>
+        </div>
+
+        <div class="test-step">
+            <h3>Test 5: Edge Case - No Animals Selected</h3>
+            <ol>
+                <li>Uncheck all animals</li>
+                <li>Save settings</li>
+                <li>Go to frontend</li>
+                <li><strong>Expected:</strong> Chatbot shows default animals (fallback behavior)</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Technical Details</h2>
+        <h3>Before (Broken):</h3>
+        <pre><code>// When no checkboxes checked, selected_animals not sent in POST
+// Sanitization function couldn't distinguish between "not submitted" and "empty selection"
+if (isset($input['selected_animals']) && is_array($input['selected_animals'])) {
+    $sanitized['selected_animals'] = array_map('sanitize_text_field', $input['selected_animals']);
+}</code></pre>
+
+        <h3>After (Fixed):</h3>
+        <pre><code>// Hidden field indicates form was submitted
+if (isset($input['animal_selection_submitted'])) {
+    if (isset($input['selected_animals']) && is_array($input['selected_animals'])) {
+        $sanitized['selected_animals'] = array_map('sanitize_text_field', $input['selected_animals']);
+    }
+    // If not set, it means no animals were selected (empty array)
+} else {
+    // Form wasn't submitted, keep existing animals
+    $existing_settings = get_option('cc_chatbot_settings', array());
+    $sanitized['selected_animals'] = $existing_settings['selected_animals'] ?? array('tiger', 'elephant', 'panda');
+}</code></pre>
+    </div>
+
+    <div class="test-section">
+        <h2>Expected Results</h2>
+        <ul>
+            <li class="info">🔍 Animal selection changes save properly</li>
+            <li class="info">🔍 Settings persist after page refresh</li>
+            <li class="info">🔍 Frontend updates to show only selected animals</li>
+            <li class="info">🔍 No memory errors during saves</li>
+            <li class="info">🔍 Proper fallback when no animals selected</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>Version Information</h2>
+        <p><strong>Plugin Version:</strong> v23 (Animal Selection Fix)</p>
+        <p><strong>Key Changes:</strong> Fixed animal selection sanitization logic</p>
+        <p><strong>Test Status:</strong> Ready for rigorous testing</p>
+    </div>
+
+    <script>
+        console.log('Animal selection fix test page loaded');
+        
+        // Simulate test results
+        function runTests() {
+            console.log('Running animal selection tests...');
+            alert('Test simulation complete. In the actual plugin, animal selection should now work properly.');
+        }
+    </script>
+</body>
+</html> 
